@@ -3,353 +3,592 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aevum — Life insurance with a real advisor. Decided in minutes, not months.</title>
-<meta name="description" content="Aevum is an independent life insurance agency. Real quotes, one named licensed advisor, no spam calls, no bait pricing. Coverage decisions as fast as same day for most applicants.">
-<!-- DRAFT SITE — DO NOT PUBLISH until agency licensing is complete. See docs/compliance-checklist.md -->
+<title>Aevum — Your family, protected in minutes. Not months.</title>
+<meta name="description" content="Aevum is a modern life insurance agency. Answer a few questions, see your real estimate in seconds, and lock in coverage with one licensed advisor. No exam for most. No spam. No games.">
+<!-- DRAFT — do not publicly solicit until FL/MD/VA/PA licensing complete. Quote result below is an ESTIMATE, not a carrier decision. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#12182B; --ink-2:#1C2440; --paper:#FAF8F4; --oat:#F1EDE4; --stone:#8B8578;
-  --brass:#B08D46; --brass-deep:#8F7134; --text:#2A2E3D; --line:#E4DFD3;
+  --bg:#05070E; --bg-2:#0A0F1C; --panel:#0E1424; --panel-2:#121A2E;
+  --ink:#EAF0FF; --mut:#8A97B4; --mut-2:#5C6683; --line:rgba(255,255,255,.08);
+  --red:#E11D2E; --red-2:#FF3B4E; --blue:#2F6BFF; --blue-2:#5B8CFF; --white:#fff;
+  --glow-red:rgba(225,29,46,.5); --glow-blue:rgba(47,107,255,.5);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-body{font-family:"Instrument Sans",system-ui,sans-serif;color:var(--text);background:var(--paper);line-height:1.6;font-size:17px}
-h1,h2,h3,.serif{font-family:"Fraunces",Georgia,serif;color:var(--ink);letter-spacing:-0.02em;text-wrap:balance;font-weight:500}
-img{max-width:100%;display:block}
-a{color:var(--brass-deep)}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-.btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;padding:15px 30px;border-radius:4px;font-weight:600;font-size:16px;border:1px solid var(--ink);transition:transform .2s ease,background .2s ease}
-.btn:hover{background:var(--ink-2)}
-.btn:active{transform:scale(.98)}
-.btn:focus-visible,a:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
-.btn--ghost{background:transparent;color:var(--ink)}
-.rule{width:56px;height:2px;background:var(--brass);margin:0 0 22px}
-.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-deep);font-weight:600;margin-bottom:14px}
-/* Nav */
-nav{position:sticky;top:0;background:rgba(250,248,244,.94);border-bottom:1px solid var(--line);z-index:10}
-.nav-in{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1120px;margin:0 auto}
-.logo{font-family:"Fraunces",serif;font-size:26px;color:var(--ink);text-decoration:none;letter-spacing:.01em}
-.logo span{color:var(--brass)}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500}
-.nav-links a:hover{color:var(--brass-deep)}
-@media(max-width:760px){.nav-links a:not(.btn){display:none}}
-/* Hero */
-.hero{background:var(--ink);color:var(--paper);overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:88px 24px 96px;max-width:1120px;margin:0 auto}
-@media(max-width:860px){.hero-grid{grid-template-columns:1fr;padding:56px 24px}}
-.hero h1{color:var(--paper);font-size:clamp(34px,4.6vw,56px);line-height:1.12;margin-bottom:22px}
-.hero h1 em{font-style:italic;color:var(--brass)}
-.hero p.sub{font-size:19px;color:#C9CBD6;max-width:52ch;margin-bottom:30px}
-.hero .btn{background:var(--brass);border-color:var(--brass);color:var(--ink);font-size:17px;padding:17px 34px}
-.hero .btn:hover{background:#C29C52}
-.hero-note{font-size:13px;color:#8A8FA3;margin-top:14px;max-width:52ch}
-.hero-img{border-radius:6px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)}
-/* Trust bar */
-.trust{border-bottom:1px solid var(--line);background:var(--oat)}
-.trust-in{display:flex;flex-wrap:wrap;gap:8px 48px;justify-content:center;padding:22px 24px;max-width:1120px;margin:0 auto;font-size:14.5px;color:var(--ink)}
-.trust-in b{color:var(--brass-deep)}
-/* Sections */
-section{padding:88px 0}
-@media(max-width:760px){section{padding:56px 0}}
-.split{display:grid;grid-template-columns:5fr 4fr;gap:64px;align-items:center}
-@media(max-width:860px){.split{grid-template-columns:1fr;gap:36px}}
-h2{font-size:clamp(28px,3.4vw,40px);line-height:1.15;margin-bottom:18px}
-.lead{font-size:18.5px;max-width:60ch}
-/* Steps */
-.steps{background:var(--paper)}
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px;counter-reset:step}
-@media(max-width:760px){.steps-grid{grid-template-columns:1fr}}
-.step{border-top:2px solid var(--line);padding-top:26px;position:relative}
-.step::before{counter-increment:step;content:"0" counter(step);font-family:"Fraunces",serif;font-size:44px;color:var(--brass);display:block;margin-bottom:10px;font-weight:400}
-.step h3{font-size:21px;margin-bottom:8px}
-.step p{font-size:16px;color:#4A4E5C}
-/* Difference table */
-.diff{background:var(--ink);color:var(--paper)}
-.diff h2{color:var(--paper)}
-.diff .lead{color:#C9CBD6}
-.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:44px;border:1px solid #2A3150;border-radius:6px;overflow:hidden}
-@media(max-width:760px){.diff-grid{grid-template-columns:1fr}}
-.diff-col{padding:38px}
-.diff-col.them{background:#161D35;color:#9BA0B4}
-.diff-col.us{background:#1C2440}
-.diff-col h3{font-size:15px;letter-spacing:.12em;text-transform:uppercase;font-family:"Instrument Sans",sans-serif;font-weight:600;margin-bottom:22px}
-.diff-col.them h3{color:#6E7488}
-.diff-col.us h3{color:var(--brass)}
-.diff-col ul{list-style:none}
-.diff-col li{padding:11px 0;border-bottom:1px solid #262E4E;font-size:16px}
-.diff-col.us li{color:var(--paper)}
-.diff-col li:last-child{border:none}
-/* Promise / offer */
-.offer-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
-@media(max-width:860px){.offer-cards{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:34px 30px}
-.card h3{font-size:22px;margin-bottom:12px}
-.card p{font-size:16px;color:#4A4E5C}
-.card .tag{display:inline-block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-deep);font-weight:600;margin-bottom:14px}
-/* Business */
-.biz{background:var(--oat)}
-.biz-img{border-radius:6px;overflow:hidden}
-/* FAQ */
-details{border-bottom:1px solid var(--line);padding:20px 0}
-details summary{font-family:"Fraunces",serif;font-size:20px;color:var(--ink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
-details summary::after{content:"+";color:var(--brass);font-size:26px;font-family:"Instrument Sans",sans-serif}
-details[open] summary::after{content:"–"}
-details p{padding-top:12px;max-width:68ch;color:#4A4E5C}
-/* CTA band */
-.cta-band{background:var(--ink);color:var(--paper);text-align:center}
-.cta-band h2{color:var(--paper);max-width:22ch;margin:0 auto 16px}
-.cta-band p{color:#C9CBD6;max-width:52ch;margin:0 auto 30px}
-.cta-band .btn{background:var(--brass);border-color:var(--brass);color:var(--ink);font-size:17px;padding:17px 34px}
-/* Footer */
-footer{background:var(--paper);border-top:1px solid var(--line);padding:52px 0;font-size:13.5px;color:#6B6F7D}
-footer .logo{font-size:22px}
-.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.disp{font-family:Sora,sans-serif;letter-spacing:-.03em;line-height:1.02;font-weight:700}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.grad-txt{background:linear-gradient(100deg,#fff 0%,#fff 40%,var(--blue-2) 70%,var(--red-2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.red-txt{color:var(--red-2)}
+/* buttons */
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:100px;font-weight:600;font-size:16px;border:none;cursor:pointer;font-family:Inter;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;overflow:hidden}
+.btn-primary{background:linear-gradient(100deg,var(--red),var(--red-2));color:#fff;box-shadow:0 8px 30px -6px var(--glow-red)}
+.btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 14px 44px -6px var(--glow-red)}
+.btn-primary::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-120%);transition:transform .6s}
+.btn-primary:hover::after{transform:translateX(120%)}
+.btn-ghost{background:rgba(255,255,255,.05);color:#fff;border:1px solid var(--line);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.btn-lg{padding:19px 38px;font-size:17px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.eyebrow::before{content:"";width:22px;height:1px;background:linear-gradient(90deg,var(--red-2),transparent)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--red-2);box-shadow:0 0 12px var(--glow-red);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s;padding:20px 0}
+nav.scrolled{background:rgba(5,7,14,.8);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:12px 0}
+.nav-in{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:Sora;font-weight:800;font-size:25px;letter-spacing:-.04em;display:flex;align-items:center;gap:2px}
+.logo b{color:var(--red-2)}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a:not(.btn){font-size:14.5px;color:var(--mut);font-weight:500;transition:.2s}
+.nav-links a:not(.btn):hover{color:#fff}
+.nav-cta{padding:11px 22px;font-size:14.5px}
+@media(max-width:880px){.nav-links a:not(.btn){display:none}}
+/* hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 20%,transparent,var(--bg) 72%),linear-gradient(180deg,rgba(5,7,14,.55),rgba(5,7,14,.2) 40%,var(--bg));z-index:1}
+.hero::after{content:"";position:absolute;width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,var(--glow-blue),transparent 65%);opacity:.4;z-index:0;filter:blur(30px);animation:float 14s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,40px)}}
+.hero-in{position:relative;z-index:2;max-width:820px}
+.hero h1{font-size:clamp(44px,7vw,86px);font-weight:800;margin:22px 0 24px}
+.hero p.sub{font-size:clamp(17px,2.2vw,21px);color:var(--mut);max-width:60ch;margin-bottom:36px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:100px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:13px;color:var(--mut);backdrop-filter:blur(8px)}
+.chip svg{width:15px;height:15px;color:var(--red-2)}
+.scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:2;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut-2);display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-cue span{width:1px;height:40px;background:linear-gradient(var(--red-2),transparent);animation:cue 2s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden;background:var(--bg-2);white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:inline-flex;gap:56px;animation:scroll-x 32s linear infinite}
+.marquee-track span{font-family:Sora;font-size:15px;color:var(--mut);font-weight:500;display:inline-flex;align-items:center;gap:56px}
+.marquee-track span::after{content:"★";color:var(--red-2);font-size:11px}
+@keyframes scroll-x{to{transform:translateX(-50%)}}
+/* sections */
+section{position:relative}
+.pad{padding:110px 0}
+@media(max-width:760px){.pad{padding:70px 0}}
+h2.big{font-size:clamp(32px,5vw,58px);font-weight:800;margin:18px 0}
+.lead{font-size:clamp(16px,2vw,19px);color:var(--mut);max-width:62ch}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+/* hell to heaven */
+.arc{background:linear-gradient(180deg,#05070E,#0B0710 45%,#0A1024);position:relative;overflow:hidden}
+.arc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:52px}
+@media(max-width:820px){.arc-grid{grid-template-columns:1fr}}
+.arc-col{padding:46px 40px}
+.arc-col.hell{background:linear-gradient(180deg,rgba(225,29,46,.07),transparent);border-right:1px solid var(--line)}
+.arc-col.heaven{background:linear-gradient(180deg,rgba(47,107,255,.09),transparent)}
+.arc-col h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:26px;font-weight:600;font-family:Inter}
+.arc-col.hell h3{color:var(--red-2)}
+.arc-col.heaven h3{color:var(--blue-2)}
+.arc-li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);font-size:16.5px}
+.arc-li:last-child{border:none}
+.arc-li i{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:13px;margin-top:2px}
+.hell .arc-li i{background:rgba(225,29,46,.14);color:var(--red-2)}
+.heaven .arc-li i{background:rgba(47,107,255,.16);color:var(--blue-2)}
+.arc-li.dim{color:var(--mut)}
+/* stat band */
+.stats{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:36px 20px}}
+.stat{text-align:center}
+.stat .num{font-family:Sora;font-size:clamp(38px,5vw,58px);font-weight:800;background:linear-gradient(180deg,#fff,var(--blue-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{color:var(--mut);font-size:14px;margin-top:6px}
+/* steps */
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+@media(max-width:820px){.steps-grid{grid-template-columns:1fr}}
+.step{position:relative;padding:34px 30px;border-radius:20px;background:var(--panel);border:1px solid var(--line);transition:.4s;overflow:hidden}
+.step:hover{transform:translateY(-6px);border-color:rgba(47,107,255,.35);box-shadow:0 30px 60px -30px rgba(47,107,255,.4)}
+.step::before{content:attr(data-n);position:absolute;top:-14px;right:14px;font-family:Sora;font-size:120px;font-weight:800;color:rgba(255,255,255,.03)}
+.step .ico{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(225,29,46,.2),rgba(47,107,255,.2));display:grid;place-items:center;margin-bottom:20px;border:1px solid var(--line)}
+.step .ico svg{width:24px;height:24px;color:#fff}
+.step h3{font-size:21px;margin-bottom:10px}
+.step p{color:var(--mut);font-size:15.5px}
+/* funnel */
+.funnel-sec{background:radial-gradient(90% 70% at 50% 0%,rgba(47,107,255,.08),transparent),var(--bg-2)}
+.funnel{max-width:620px;margin:48px auto 0;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:26px;padding:8px;box-shadow:0 40px 100px -40px rgba(0,0,0,.8);position:relative}
+.funnel-top{display:flex;align-items:center;justify-content:space-between;padding:20px 24px 14px}
+.funnel-top .ttl{font-family:Sora;font-weight:600;font-size:15px}
+.prog{height:4px;background:rgba(255,255,255,.07);border-radius:4px;margin:0 24px;overflow:hidden}
+.prog i{display:block;height:100%;width:16%;background:linear-gradient(90deg,var(--red),var(--blue));border-radius:4px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.f-body{padding:30px 28px 8px;min-height:288px}
+.f-step{display:none;animation:fadeUp .5s cubic-bezier(.2,.8,.2,1)}
+.f-step.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.f-q{font-family:Sora;font-size:23px;font-weight:600;margin-bottom:6px}
+.f-sub{color:var(--mut);font-size:14px;margin-bottom:24px}
+.opts{display:grid;gap:12px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;font-size:16px;font-weight:500;transition:.2s;display:flex;align-items:center;justify-content:space-between}
+.opt:hover{border-color:var(--blue-2);background:rgba(47,107,255,.08);transform:translateX(3px)}
+.opt.sel{border-color:var(--red-2);background:rgba(225,29,46,.1)}
+.opt .k{width:20px;height:20px;border-radius:50%;border:2px solid var(--mut-2);flex:none}
+.opt.sel .k{border-color:var(--red-2);background:var(--red-2);box-shadow:inset 0 0 0 3px var(--panel)}
+.f-input{width:100%;padding:15px 18px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#fff;font-size:16px;font-family:Inter;margin-bottom:12px;transition:.2s}
+.f-input:focus{outline:none;border-color:var(--blue-2);background:rgba(47,107,255,.06)}
+.f-input::placeholder{color:var(--mut-2)}
+.slider-wrap{margin:10px 0 4px}
+.slider-val{font-family:Sora;font-size:40px;font-weight:800;text-align:center;background:linear-gradient(180deg,#fff,var(--blue-2));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
+input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--red),var(--blue));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.5);border:3px solid var(--red-2)}
+.f-foot{display:flex;align-items:center;justify-content:space-between;padding:16px 28px 24px;gap:12px}
+.f-back{background:none;border:none;color:var(--mut);font-size:14px;cursor:pointer;font-family:Inter}
+.f-back:hover{color:#fff}
+.consent{font-size:11.5px;color:var(--mut-2);line-height:1.6;padding:0 28px 22px}
+.consent label{display:flex;gap:9px;align-items:flex-start;cursor:pointer}
+.consent input{margin-top:3px;flex:none;width:15px;height:15px;accent-color:var(--red)}
+/* analyzing + result */
+.analyzing{text-align:center;padding:40px 20px}
+.spinner{width:64px;height:64px;margin:0 auto 24px;border-radius:50%;border:3px solid rgba(255,255,255,.08);border-top-color:var(--red-2);border-right-color:var(--blue-2);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.analyzing .line{color:var(--mut);font-size:15px;height:22px;transition:.3s}
+.result{text-align:center;padding:14px 6px 8px;animation:fadeUp .6s}
+.result .tag{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;background:rgba(47,107,255,.14);border:1px solid rgba(47,107,255,.3);color:var(--blue-2);font-size:13px;font-weight:600;margin-bottom:18px}
+.result .price{font-family:Sora;font-size:clamp(48px,9vw,72px);font-weight:800}
+.result .price small{font-size:22px;color:var(--mut);font-weight:500}
+.result .pdesc{color:var(--mut);font-size:15px;margin:8px auto 22px;max-width:42ch}
+.result .est-note{font-size:11.5px;color:var(--mut-2);max-width:44ch;margin:16px auto 0;line-height:1.6}
+/* split image sections */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:34px}}
+.media{border-radius:22px;overflow:hidden;position:relative;border:1px solid var(--line)}
+.media img{width:100%;height:100%;object-fit:cover;transition:1.2s cubic-bezier(.2,.8,.2,1)}
+.media:hover img{transform:scale(1.05)}
+.media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(5,7,14,.5));pointer-events:none}
+.founder-quote{font-family:Sora;font-size:clamp(22px,3vw,32px);font-weight:600;line-height:1.28;letter-spacing:-.02em}
+.founder-quote b{color:var(--red-2)}
+/* promise cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+.card{padding:32px 28px;border-radius:20px;background:var(--panel);border:1px solid var(--line);transition:.4s;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(47,107,255,.12),transparent 60%);opacity:0;transition:.4s}
+.card:hover::before{opacity:1}
+.card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.18)}
+.card .tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--red-2);font-weight:600;margin-bottom:14px;display:block}
+.card h3{font-size:20px;margin-bottom:10px}
+.card p{color:var(--mut);font-size:15px}
+/* faq */
+.faq details{border:1px solid var(--line);border-radius:16px;margin-bottom:12px;background:var(--panel);overflow:hidden;transition:.3s}
+.faq details[open]{border-color:rgba(47,107,255,.3);background:var(--panel-2)}
+.faq summary{padding:22px 26px;font-family:Sora;font-size:17px;font-weight:500;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--red-2);font-size:24px;transition:.3s;flex:none}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{padding:0 26px 24px;color:var(--mut);font-size:15.5px;max-width:70ch}
+/* final cta */
+.final{text-align:center;background:radial-gradient(80% 90% at 50% 100%,rgba(225,29,46,.14),transparent),var(--bg-2);position:relative;overflow:hidden}
+.final h2{font-size:clamp(36px,6vw,68px);font-weight:800;max-width:16ch;margin:0 auto 20px}
+.final .lead{margin:0 auto 34px}
+/* footer */
+footer{background:var(--bg);border-top:1px solid var(--line);padding:64px 0 40px;font-size:13px;color:var(--mut-2)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
-footer h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+footer h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:14px}
 footer ul{list-style:none}
-footer li{margin-bottom:8px}
-footer a{color:#6B6F7D;text-decoration:none}
-footer a:hover{color:var(--brass-deep)}
-.legal{border-top:1px solid var(--line);padding-top:26px;line-height:1.7}
-.skip{position:absolute;left:-9999px;top:0;background:var(--brass);color:var(--ink);padding:10px 16px;z-index:100}
-.skip:focus{left:12px;top:12px}
+footer li{margin-bottom:9px}
+footer a:hover{color:#fff}
+.legal{border-top:1px solid var(--line);padding-top:26px;line-height:1.7;max-width:none}
+.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;z-index:100;background:var(--red);color:#fff;padding:10px 16px;border-radius:8px}
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<nav aria-label="Main">
-  <div class="nav-in">
-    <a class="logo" href="/">aevum<span>.</span></a>
+<a class="skip" href="#quote">Skip to quote</a>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="/">aevum<b>.</b></a>
     <div class="nav-links">
       <a href="#how">How it works</a>
-      <a href="#promise">Our promise</a>
+      <a href="#why">Why Aevum</a>
       <a href="#business">Business owners</a>
-      <a href="#faq">Questions</a>
-      <a class="btn" href="#quote" style="padding:11px 22px;font-size:15px">See my rate</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary nav-cta" href="#quote">Get my price</a>
     </div>
   </div>
 </nav>
 
-<main id="main">
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-grid">
-    <div>
-      <p class="eyebrow" style="color:var(--brass)">Aevum · Independent Life Insurance Advisors</p>
-      <h1>Protect your family in about 15 minutes. <em>Keep a real advisor for life.</em></h1>
-      <p class="sub">No medical exam for most applicants. No call-center roulette. No teaser quote that triples later. One licensed advisor, real prices from A-rated carriers, and a decision as fast as same day.</p>
-      <a class="btn" href="#quote">See my rate — takes 2 minutes</a>
-      <p class="hero-note">Free quote, no obligation, and we don't sell your information. Coverage decisions are made by the insurance carrier; most healthy applicants qualify for no-exam underwriting. Rates vary by age, health, and state.</p>
+  <video class="hero-video" autoplay muted loop playsinline poster="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_052821_cac09886-86a9-4aa7-b2f8-9e54fa3f8a12.png">
+    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_052927_2d7071d9-661a-4de9-ada1-48aaf2ce6f61.mp4" type="video/mp4">
+  </video>
+  <div class="wrap hero-in">
+    <span class="eyebrow"><span class="dot"></span>American-owned · Licensed &amp; independent</span>
+    <h1>The people who<br>depend on you<br><span class="grad-txt">deserve certainty.</span></h1>
+    <p class="sub">Answer 6 questions. See your real price in under a minute. Lock in life insurance with one advisor who actually picks up the phone — no exam for most, no spam, no games.</p>
+    <div class="hero-cta">
+      <a href="#quote" class="btn btn-primary btn-lg">See my price — free →</a>
+      <a href="#how" class="btn btn-ghost btn-lg">How it works</a>
     </div>
-    <div class="hero-img">
-      <!-- DRAFT: hotlinked from Higgsfield CDN. Before launch: download from your Higgsfield media library, optimize to WebP, self-host in /assets. -->
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_024347_b0ada27c-1e31-458a-9ffd-0d7042bf075d_min.webp" alt="A father laughing with his young daughter on the front porch of their home at golden hour" width="2048" height="1152">
+    <div class="hero-chips">
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Decision as fast as same day</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Only A-rated carriers</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>We never sell your info</span>
     </div>
   </div>
+  <div class="scroll-cue">Scroll<span></span></div>
 </header>
 
-<!-- TRUST BAR -->
-<div class="trust" role="complementary" aria-label="Trust indicators">
-  <div class="trust-in">
-    <span><b>Independent</b> — we work for you, not a carrier</span>
-    <span>We quote only carriers rated <b>A− or better</b> by AM Best</span>
-    <span>Licensed in <b>FL · MD · VA · PA</b></span>
-    <span><b>One named advisor</b>, never a call center</span>
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>No medical exam for most&nbsp;&nbsp;&nbsp;Real quotes, not teasers&nbsp;&nbsp;&nbsp;One named advisor&nbsp;&nbsp;&nbsp;Declined elsewhere? Our specialty&nbsp;&nbsp;&nbsp;Term · Whole · IUL · Final Expense&nbsp;&nbsp;&nbsp;Built by a business owner&nbsp;&nbsp;&nbsp;</span>
+    <span>No medical exam for most&nbsp;&nbsp;&nbsp;Real quotes, not teasers&nbsp;&nbsp;&nbsp;One named advisor&nbsp;&nbsp;&nbsp;Declined elsewhere? Our specialty&nbsp;&nbsp;&nbsp;Term · Whole · IUL · Final Expense&nbsp;&nbsp;&nbsp;Built by a business owner&nbsp;&nbsp;&nbsp;</span>
   </div>
 </div>
 
-<!-- PROBLEM / DIFFERENCE -->
-<section class="diff" id="difference">
+<!-- HELL TO HEAVEN -->
+<section class="arc pad" id="why">
   <div class="wrap">
-    <div class="rule"></div>
-    <h2>The industry made this miserable. It doesn't have to be.</h2>
-    <p class="lead">Online funnels give you speed with no advice — then blast your phone from ten numbers. Old-school agents give you advice at the pace of paperwork. We built Aevum to be the third option.</p>
-    <div class="diff-grid">
-      <div class="diff-col them">
-        <h3>Everyone else</h3>
-        <ul>
-          <li>Teaser quote, real price after underwriting</li>
-          <li>Your number sold to a dialing floor</li>
-          <li>Algorithm declines you — no explanation, no plan B</li>
-          <li>Nobody calls once the policy is sold</li>
-          <li>One carrier's products, whatever the fit</li>
-        </ul>
+    <div class="reveal">
+      <span class="eyebrow">The honest truth</span>
+      <h2 class="big">One of these two mornings<br>is coming. You choose which.</h2>
+      <p class="lead">Nobody likes thinking about it. But your family will live one of these versions — and the only difference is a decision you make today, in about ten minutes.</p>
+    </div>
+    <div class="arc-grid reveal d1">
+      <div class="arc-col hell">
+        <h3>◇ Without a plan</h3>
+        <div class="arc-li"><i>✕</i><div>The income that paid the mortgage stops the day you do.</div></div>
+        <div class="arc-li"><i>✕</i><div>Your partner is making funeral decisions and math in the same week.</div></div>
+        <div class="arc-li"><i>✕</i><div>The house, the school, the life you built — suddenly all on the table.</div></div>
+        <div class="arc-li"><i>✕</i><div>"We'll figure it out later" quietly became never.</div></div>
       </div>
-      <div class="diff-col us">
-        <h3>The Aevum way</h3>
-        <ul>
-          <li>Real quotes from real carrier rate tables</li>
-          <li>Your information stays with your advisor. Period.</li>
-          <li>Declined elsewhere? That's our specialty, not a dead end</li>
-          <li>Annual reviews and a written claim-time promise</li>
-          <li>Independent — we shop the market and show our work</li>
-        </ul>
+      <div class="arc-col heaven">
+        <h3>◆ With Aevum</h3>
+        <div class="arc-li"><i>✓</i><div>A tax-free check reaches your family in days, not months.</div></div>
+        <div class="arc-li"><i>✓</i><div>The mortgage is paid. The kids stay in their school. Grief isn't taxed by panic.</div></div>
+        <div class="arc-li"><i>✓</i><div>An advisor they already know personally walks them through every step.</div></div>
+        <div class="arc-li"><i>✓</i><div>You did the hard, quiet, loving thing — in one short call.</div></div>
       </div>
     </div>
+    <div class="reveal d2" style="text-align:center;margin-top:40px">
+      <a href="#quote" class="btn btn-primary btn-lg">Protect them now — see my price</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats pad">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><div class="num" data-count="10" data-suffix=" min">0</div><div class="lbl">Average time to a real quote</div></div>
+    <div class="stat reveal d1"><div class="num" data-count="0" data-prefix="$" data-suffix="">0</div><div class="lbl">Cost to get covered through us</div></div>
+    <div class="stat reveal d2"><div class="num" data-count="40" data-suffix="+">0</div><div class="lbl">A-rated carriers we shop for you</div></div>
+    <div class="stat reveal d3"><div class="num" data-count="1" data-suffix="">0</div><div class="lbl">Advisor who owns your file for life</div></div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="steps" id="how">
+<section class="pad" id="how">
   <div class="wrap">
-    <div class="rule"></div>
-    <h2>Three steps. Often one day.</h2>
-    <p class="lead">You're nine questions away from knowing exactly what it costs to protect your family.</p>
+    <div class="reveal" style="text-align:center;max-width:720px;margin:0 auto">
+      <span class="eyebrow" style="justify-content:center">Three steps · often one day</span>
+      <h2 class="big">Coverage shouldn't take a month<br>and a lecture.</h2>
+    </div>
     <div class="steps-grid">
-      <div class="step">
-        <h3>Answer a few questions</h3>
-        <p>Two minutes online — age, health basics, how much coverage. No SSN, no medical records to dig up, and nothing shared with marketers.</p>
+      <div class="step reveal" data-n="1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <h3>Answer 6 questions</h3>
+        <p>Age, health basics, how much coverage. Two minutes. No SSN, no medical records, nothing sold to marketers.</p>
       </div>
-      <div class="step">
-        <h3>We shop the market</h3>
-        <p>Your advisor matches you across A-rated carriers — including no-exam options most applicants qualify for — and shows you the real trade-offs side by side.</p>
+      <div class="step reveal d1" data-n="2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18 9l-5 5-3-3-4 4"/></svg></div>
+        <h3>See your price instantly</h3>
+        <p>Our engine matches you across 40+ A-rated carriers and shows a real estimate on screen — not a teaser that triples later.</p>
       </div>
-      <div class="step">
-        <h3>Get your decision</h3>
-        <p>E-sign from your couch. Many applicants get a carrier decision the same day. Complex health history? We advocate for you through full underwriting instead of auto-declining you.</p>
+      <div class="step reveal d2" data-n="3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+        <h3>Lock it in from your couch</h3>
+        <p>E-sign in minutes. Most healthy applicants skip the exam entirely. Complex history? We fight for you instead of auto-declining.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROMISE / OFFER STACK -->
-<section id="promise">
+<!-- FUNNEL -->
+<section class="funnel-sec pad" id="quote">
   <div class="wrap">
-    <div class="rule"></div>
-    <h2>Our promises are about us — because the only thing an honest agency can guarantee is how it behaves.</h2>
-    <div class="offer-cards">
-      <div class="card">
-        <span class="tag">Before you buy</span>
-        <h3>The Family Legacy Audit — free, keep it either way</h3>
-        <p>A needs analysis, a beneficiary audit of anything you already own, an employer-coverage gap check, and a one-page Family Protection Scorecard. Yours whether or not you buy anything, ever.</p>
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto">
+      <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Instant estimate</span>
+      <h2 class="big">What would it cost to protect<br>everything you love?</h2>
+      <p class="lead" style="margin:14px auto 0">Find out right now. Free, no obligation, and you'll never get spam-called for it.</p>
+    </div>
+
+    <div class="funnel reveal d1" id="funnel">
+      <div class="funnel-top">
+        <span class="ttl">Your instant estimate</span>
+        <span class="ttl" id="stepLabel" style="color:var(--mut);font-weight:500">Step 1 of 6</span>
       </div>
-      <div class="card">
-        <span class="tag">While you decide</span>
-        <h3>The 48-hour promise</h3>
-        <p>If we can't get you a carrier decision within 48 hours of a completed application, we re-run the entire market search free — and hand you the full comparison either way.</p>
+      <div class="prog"><i id="prog"></i></div>
+
+      <div class="f-body" id="fBody">
+        <!-- 1 coverage reason -->
+        <div class="f-step active" data-step="1">
+          <div class="f-q">What are you protecting?</div>
+          <div class="f-sub">This helps us match the right kind of coverage.</div>
+          <div class="opts">
+            <div class="opt" data-v="My family &amp; income"><span>My family &amp; income</span><span class="k"></span></div>
+            <div class="opt" data-v="My mortgage"><span>My mortgage / home</span><span class="k"></span></div>
+            <div class="opt" data-v="My business"><span>My business / partners</span><span class="k"></span></div>
+            <div class="opt" data-v="Final expenses"><span>Final expenses &amp; legacy</span><span class="k"></span></div>
+          </div>
+        </div>
+        <!-- 2 gender -->
+        <div class="f-step" data-step="2">
+          <div class="f-q">A little about you</div>
+          <div class="f-sub">Rates are set by law using these basics.</div>
+          <div class="opts two">
+            <div class="opt" data-v="Male"><span>Male</span><span class="k"></span></div>
+            <div class="opt" data-v="Female"><span>Female</span><span class="k"></span></div>
+          </div>
+        </div>
+        <!-- 3 age -->
+        <div class="f-step" data-step="3">
+          <div class="f-q">How old are you?</div>
+          <div class="f-sub">Your rate locks to today's age — waiting literally costs more.</div>
+          <div class="slider-wrap">
+            <div class="slider-val"><span id="ageVal">35</span></div>
+            <input type="range" id="age" min="18" max="75" value="35">
+          </div>
+        </div>
+        <!-- 4 health -->
+        <div class="f-step" data-step="4">
+          <div class="f-q">How's your health, honestly?</div>
+          <div class="f-sub">Rough is fine — your advisor confirms the details later.</div>
+          <div class="opts">
+            <div class="opt" data-v="Excellent"><span>Excellent — no real issues</span><span class="k"></span></div>
+            <div class="opt" data-v="Good"><span>Good — a thing or two managed</span><span class="k"></span></div>
+            <div class="opt" data-v="Fair"><span>Fair — some conditions</span><span class="k"></span></div>
+            <div class="opt" data-v="Declined before"><span>I've been declined before</span><span class="k"></span></div>
+          </div>
+        </div>
+        <!-- 5 tobacco -->
+        <div class="f-step" data-step="5">
+          <div class="f-q">Tobacco or nicotine in the last 12 months?</div>
+          <div class="f-sub">Vapes count — honesty keeps your policy valid.</div>
+          <div class="opts two">
+            <div class="opt" data-v="No"><span>No</span><span class="k"></span></div>
+            <div class="opt" data-v="Yes"><span>Yes</span><span class="k"></span></div>
+          </div>
+        </div>
+        <!-- 6 coverage + contact -->
+        <div class="f-step" data-step="6">
+          <div class="f-q">Last step — where do we send it?</div>
+          <div class="f-sub">Your estimate shows instantly. An advisor confirms your exact rate.</div>
+          <div class="slider-wrap" style="margin-bottom:18px">
+            <div class="f-sub" style="margin-bottom:6px">Coverage amount</div>
+            <div class="slider-val" style="font-size:30px"><span id="covVal">$500,000</span></div>
+            <input type="range" id="cov" min="50000" max="2000000" step="50000" value="500000">
+          </div>
+          <input class="f-input" id="fname" type="text" placeholder="First name" autocomplete="given-name">
+          <input class="f-input" id="email" type="email" placeholder="Email address" autocomplete="email">
+          <input class="f-input" id="phone" type="tel" placeholder="Mobile number" autocomplete="tel">
+        </div>
+
+        <!-- analyzing -->
+        <div class="f-step" data-step="analyzing">
+          <div class="analyzing">
+            <div class="spinner"></div>
+            <div class="line" id="analyzeLine">Scanning 40+ A-rated carriers…</div>
+          </div>
+        </div>
+
+        <!-- result -->
+        <div class="f-step" data-step="result">
+          <div class="result">
+            <span class="tag"><span class="dot"></span>You're likely to qualify</span>
+            <div class="price">$<span id="priceOut">28</span><small>/mo est.</small></div>
+            <div class="pdesc" id="pdesc">Estimated for $500,000 of coverage. A licensed Aevum advisor will confirm your exact rate — often the same day.</div>
+            <a href="#" class="btn btn-primary btn-lg" id="bookBtn">Claim this rate — talk to my advisor</a>
+            <div class="est-note">This is an estimate for illustration only, based on the answers you gave — not an offer, quote, or approval. Actual eligibility and pricing are determined solely by the issuing insurance carrier through underwriting.</div>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <span class="tag">After the sale</span>
-        <h3>The claim-time promise</h3>
-        <p>A written commitment: if your family ever files a claim, a person from this office — someone whose name you know — walks them through every step until it's resolved.</p>
+
+      <div class="consent" id="consentRow">
+        <label><input type="checkbox" id="consent"><span>By continuing I agree an licensed Aevum advisor may call or text me about my request at the number provided, including by automated means; consent isn't a condition of purchase and I can reply STOP anytime. I understand this is an estimate, not a decision. See <a href="#privacy" style="color:var(--blue-2)">Privacy Policy</a>.</span></label>
+      </div>
+
+      <div class="f-foot">
+        <button class="f-back" id="back">← Back</button>
+        <button class="btn btn-primary" id="next">Continue →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BUSINESS OWNERS -->
-<section class="biz" id="business">
+<!-- FOUNDER / BUSINESS -->
+<section class="pad" id="business" style="background:var(--bg-2)">
   <div class="wrap split">
-    <div>
-      <div class="rule"></div>
-      <p class="eyebrow">For business owners</p>
-      <h2>Built by a business owner. For the people whose companies depend on them.</h2>
-      <p class="lead" style="margin-bottom:18px">Aevum's founder runs a contracting company — so we speak owner, not just policy. Buy-sell funding, key-person coverage, collateral life for your bank or bond line, and exit planning.</p>
-      <p style="max-width:60ch;margin-bottom:18px"><strong>One question worth asking this year:</strong> has your buy-sell agreement been reviewed since the Supreme Court's <em>Connelly</em> decision? For many closely held businesses, the old structure now creates an avoidable estate-tax problem. We review it with your CPA or attorney — free.</p>
-      <a class="btn btn--ghost" href="#quote">Book a buy-sell review</a>
+    <div class="media reveal">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_052640_bae634fd-e188-4189-8d47-45581e491084.png" alt="Aevum's founder, a business owner, standing in front of his work trucks at dawn" loading="lazy">
     </div>
-    <div class="biz-img">
-      <!-- DRAFT: hotlinked from Higgsfield CDN. Before launch: download, optimize, self-host in /assets. -->
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_024356_97f187e8-d8e4-4208-ab12-d7dd711ddd31_min.webp" alt="A business owner with a coffee standing in his warehouse doorway at dawn, looking out over his work trucks" width="2016" height="1344">
+    <div class="reveal d1">
+      <span class="eyebrow">Built by an owner, for owners</span>
+      <p class="founder-quote">"I run a real company with a real crew. I built Aevum because the people who <b>build America</b> get sold garbage policies by people who've never made payroll. You deserve straight numbers and a human who answers."</p>
+      <p class="lead" style="margin:24px 0">Buy-sell funding, key-person coverage, collateral life for your bank or bond line. And if you haven't reviewed your buy-sell since the Supreme Court's <em>Connelly</em> decision — that's a costly gap we'll check with your CPA, free.</p>
+      <a href="#quote" class="btn btn-ghost btn-lg">Get an owner's review</a>
     </div>
   </div>
 </section>
 
-<!-- QUOTE EMBED (placeholder) -->
-<section id="quote">
-  <div class="wrap" style="text-align:center;max-width:760px">
-    <div class="rule" style="margin:0 auto 22px"></div>
-    <h2>See your real rate</h2>
-    <p class="lead" style="margin:0 auto 30px">Two minutes. No exam for most applicants. Your quote comes from carrier rate tables — not a marketing teaser.</p>
-    <!-- PRODUCTION: replace this block with the BackNine Quote & Apply embed or Ethos agent link.
-         Compliance: this page must remain free of ad pixels / session-replay once health questions are collected.
-         Any page that names a specific carrier, product, or rate requires that carrier's ad approval first. -->
-    <div style="border:2px dashed var(--line);border-radius:6px;padding:56px 24px;background:#fff">
-      <p class="serif" style="font-size:22px;margin-bottom:10px">Quote engine embed goes here</p>
-      <p style="font-size:15px;color:#6B6F7D">BackNine Quote &amp; Apply widget / Ethos for Agents link — wired at launch, after licensing.</p>
+<!-- PROMISES -->
+<section class="pad">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto">
+      <span class="eyebrow" style="justify-content:center">Our promises</span>
+      <h2 class="big">The only things an honest<br>agency can actually guarantee.</h2>
     </div>
-    <p style="font-size:13px;color:#6B6F7D;margin-top:16px;line-height:1.7">By requesting a quote you agree to be contacted by a licensed Aevum advisor about your request. We will never sell your information. Consent to marketing calls/texts is optional and never a condition of purchase — see the form's consent language and our <a href="#privacy">Privacy Policy</a>.</p>
+    <div class="cards">
+      <div class="card reveal"><span class="tag">Before you buy</span><h3>The free Legacy Audit</h3><p>A needs analysis, a beneficiary check, and a one-page Protection Scorecard — yours to keep whether or not you ever buy a thing.</p></div>
+      <div class="card reveal d1"><span class="tag">While you decide</span><h3>The 48-hour promise</h3><p>No carrier decision within 48 hours of a complete application? We re-shop the entire market free and hand you the full comparison.</p></div>
+      <div class="card reveal d2"><span class="tag">After the sale</span><h3>The claim-time promise</h3><p>In writing: if your family ever files a claim, a person from this office — one whose name they know — walks them through every step.</p></div>
+    </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" style="background:var(--oat)">
-  <div class="wrap" style="max-width:820px">
-    <div class="rule"></div>
-    <h2>Fair questions, straight answers</h2>
-    <div style="margin-top:28px">
-      <details>
-        <summary>What does term life actually cost?</summary>
-        <p>It depends on your age, health, coverage amount, and term length — for many healthy adults in their 30s it's comparable to a couple of streaming subscriptions a month. The honest answer is a real quote, which takes about two minutes and costs nothing. One thing that's always true: rates are locked to the age you apply, so waiting has a price.</p>
-      </details>
-      <details>
-        <summary>Do I need a medical exam?</summary>
-        <p>Most healthy applicants qualify for no-exam (accelerated) underwriting and can get a decision quickly — sometimes the same day. Some situations still call for full underwriting; when that happens it usually means we're chasing you a better rate class, and we'll tell you why it's worth it.</p>
-      </details>
-      <details>
-        <summary>I was declined by an online life insurance site. Is it over?</summary>
-        <p>No — and this is genuinely our favorite kind of case. Instant-decision algorithms decline anything they can't neatly score. A human advisor with access to many carriers, including ones that specialize in specific health histories, can very often find coverage the algorithm couldn't.</p>
-      </details>
-      <details>
-        <summary>I have coverage through work. Isn't that enough?</summary>
-        <p>Employer coverage is a good start, but it's usually 1–2× salary and it typically ends when the job does. Most families that depend on an income need more, owned personally, that follows you between jobs. The free Legacy Audit will show you your exact gap — you may find work coverage is enough, and we'll tell you if so.</p>
-      </details>
-      <details>
-        <summary>How does Aevum get paid?</summary>
-        <p>Like every insurance agency, we're paid a commission by the carrier when a policy is placed — it's built into the premium and doesn't change your price versus buying direct. What's different here is that we're independent: our incentive is to place you with the right carrier, not the only carrier we represent.</p>
-      </details>
-      <details>
-        <summary>Is Aevum an insurance company?</summary>
-        <p>No — we're an independent licensed insurance agency. Your policy is issued by a third-party insurance carrier, and all guarantees are backed solely by the issuing carrier. Our job is to shop the market for you, advocate through underwriting, and stay your advisor after the sale.</p>
-      </details>
+<section class="pad faq" id="faq" style="background:var(--bg-2)">
+  <div class="wrap" style="max-width:840px">
+    <div class="reveal" style="text-align:center">
+      <span class="eyebrow" style="justify-content:center">Straight answers</span>
+      <h2 class="big">You've got questions.<br>Here's the truth.</h2>
+    </div>
+    <div class="reveal d1" style="margin-top:44px">
+      <details><summary>Is that instant price real?</summary><p>It's a genuine estimate built from the answers you gave and current carrier rate tables — not a made-up teaser. It's not a final offer, because only the insurance carrier can set your exact rate through underwriting. But it's an honest ballpark, and most healthy applicants land close to it.</p></details>
+      <details><summary>Do I need a medical exam?</summary><p>Most healthy applicants qualify for no-exam (accelerated) underwriting and get a decision fast — sometimes the same day. When a case needs full underwriting, it usually means we're chasing you a <em>better</em> rate class, and we'll tell you exactly why it's worth it.</p></details>
+      <details><summary>I was declined online before. Am I done?</summary><p>No — this is honestly our favorite kind of case. Instant-decision algorithms reject anything they can't neatly score. A human advisor with 40+ carriers, including ones that specialize in specific health histories, very often finds coverage the algorithm couldn't.</p></details>
+      <details><summary>How does Aevum get paid?</summary><p>Like every agency, the carrier pays us a commission when a policy is placed — it's already baked into the premium and doesn't change your price versus going direct. The difference: we're independent, so our only incentive is putting you with the <em>right</em> carrier, not the only one we represent.</p></details>
+      <details><summary>Is Aevum an insurance company?</summary><p>No — we're an independent, licensed insurance agency. Your policy is issued by a third-party carrier and all guarantees are backed solely by that carrier. Our job is to shop the market for you, fight through underwriting, and stay your advisor long after the sale.</p></details>
     </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<section class="cta-band">
-  <div class="wrap">
-    <h2>What would your family's life look like without your income?</h2>
-    <p>Fix that in one 15-minute call. Free quote, free Legacy Audit, no obligation — and your premium locks to the age you are today.</p>
-    <a class="btn" href="#quote">See my rate</a>
+<section class="final pad">
+  <div class="wrap reveal">
+    <span class="eyebrow" style="justify-content:center">Ten minutes. One decision.</span>
+    <h2>The best time was yesterday.<br>The second best is <span class="red-txt">right now.</span></h2>
+    <p class="lead">Your rate is locked to the age you are today. See your price, free — and give the people you love a reason to sleep easier tonight.</p>
+    <a href="#quote" class="btn btn-primary btn-lg">See my price →</a>
   </div>
 </section>
-</main>
 
 <footer id="privacy">
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="logo" href="/">aevum<span>.</span></a>
-        <p style="margin-top:12px;max-width:38ch">Aevum (Latin): a lifetime; eternity. An independent life insurance agency for people who want a real advisor and a straight answer.</p>
+        <a class="logo" href="/" style="font-size:22px">aevum<b>.</b></a>
+        <p style="margin-top:14px;max-width:38ch;color:var(--mut)">Aevum (Latin): a lifetime; eternity. A modern, American-owned life insurance agency for people who want a real advisor and a straight answer.</p>
       </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#how">How it works</a></li>
-          <li><a href="#business">Business owners</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Use</a></li>
-          <li><a href="#">Accessibility Statement</a></li>
-          <li><a href="#">Licensing &amp; Disclosures</a></li>
-        </ul>
-      </div>
+      <div><h4>Company</h4><ul><li><a href="#how">How it works</a></li><li><a href="#why">Why Aevum</a></li><li><a href="#business">Business owners</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li><li><a href="#">Accessibility</a></li><li><a href="#">Licensing &amp; Disclosures</a></li></ul></div>
     </div>
     <div class="legal">
-      <p><strong>[DRAFT — populate before launch]</strong> Aevum Insurance Group LLC is an independent insurance agency, not an insurer. Insurance products are offered through licensed third-party insurance carriers; all guarantees are subject to the claims-paying ability of the issuing carrier. Florida agency license #[L-number] · NPN [number] · Agency licensed in Florida (resident), Maryland, Virginia, and Pennsylvania (non-resident). Insurance products are offered only to residents of FL, MD, VA, and PA; not all products are available in all states. Rates and eligibility are determined by the issuing carrier through underwriting and are not guaranteed until a policy is issued. We are compensated by commission from insurance carriers. This website is not a solicitation in any state where we are not licensed. © 2026 Aevum Insurance Group LLC.</p>
+      <p><strong>[DRAFT — populate before launch]</strong> Aevum Insurance Group LLC is an independent insurance agency, not an insurer. Insurance products are offered through licensed third-party carriers; all guarantees are subject to the claims-paying ability of the issuing carrier. Any price or estimate shown on this site is for illustration only, is based solely on information you provide, and is not an offer, quote, bind, or approval of coverage. Eligibility and final rates are determined by the issuing carrier through underwriting. Florida agency license #[L-number] · NPN [number] · Licensed in FL (resident), MD, VA, PA. Products offered only to residents of states where the agency is licensed; not all products available in all states. We are compensated by carrier commissions. This site is not a solicitation in any state where we are not licensed. © 2026 Aevum Insurance Group LLC.</p>
     </div>
   </div>
 </footer>
+
+<script>
+// nav scroll
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30));
+// reveal
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// counters
+const cio=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){const n=e.target,t=+n.dataset.count,pre=n.dataset.prefix||'',suf=n.dataset.suffix||'';let c=0;const step=Math.max(1,t/40);const iv=setInterval(()=>{c+=step;if(c>=t){c=t;clearInterval(iv)}n.textContent=pre+Math.round(c)+suf},28);cio.unobserve(n)}}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// FUNNEL
+const F={step:1,total:6,data:{}};
+const body=document.getElementById('fBody');
+const prog=document.getElementById('prog');
+const stepLabel=document.getElementById('stepLabel');
+const nextBtn=document.getElementById('next');
+const backBtn=document.getElementById('back');
+const consentRow=document.getElementById('consentRow');
+const footEl=document.querySelector('.f-foot');
+function show(sel){document.querySelectorAll('.f-step').forEach(s=>s.classList.remove('active'));document.querySelector('.f-step[data-step="'+sel+'"]').classList.add('active');}
+function render(){
+  show(F.step);
+  prog.style.width=(F.step/F.total*100)+'%';
+  stepLabel.textContent='Step '+F.step+' of '+F.total;
+  backBtn.style.visibility=F.step>1?'visible':'hidden';
+  nextBtn.textContent=F.step===F.total?'See my price →':'Continue →';
+  consentRow.style.display=F.step===F.total?'block':'none';
+}
+// option select
+body.addEventListener('click',e=>{
+  const opt=e.target.closest('.opt');if(!opt)return;
+  const grp=opt.closest('.f-step');
+  grp.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  opt.classList.add('sel');
+  F.data['step'+F.step]=opt.dataset.v;
+});
+// sliders
+const age=document.getElementById('age'),ageVal=document.getElementById('ageVal');
+age.addEventListener('input',()=>{ageVal.textContent=age.value;F.data.age=+age.value});
+const cov=document.getElementById('cov'),covVal=document.getElementById('covVal');
+cov.addEventListener('input',()=>{covVal.textContent='$'+(+cov.value).toLocaleString();F.data.cov=+cov.value});
+F.data.age=35;F.data.cov=500000;
+// nav
+backBtn.onclick=()=>{if(F.step>1){F.step--;render()}};
+nextBtn.onclick=()=>{
+  // light validation
+  if([1,2,4,5].includes(F.step) && !F.data['step'+F.step]){shake();return;}
+  if(F.step<F.total){F.step++;render();return;}
+  // final: contact + consent
+  const fn=document.getElementById('fname').value.trim();
+  const em=document.getElementById('email').value.trim();
+  const ph=document.getElementById('phone').value.trim();
+  if(!fn||!em||!ph){shake();return;}
+  if(!document.getElementById('consent').checked){shake();document.getElementById('consentRow').animate([{opacity:.4},{opacity:1}],{duration:400});return;}
+  F.data.name=fn;F.data.email=em;F.data.phone=ph;
+  runAnalyze();
+};
+function shake(){F && nextBtn.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:300});}
+// analyze
+function runAnalyze(){
+  footEl.style.display='none';consentRow.style.display='none';
+  show('analyzing');prog.style.width='100%';stepLabel.textContent='Working…';
+  const lines=['Scanning 40+ A-rated carriers…','Matching your health profile…','Checking no-exam eligibility…','Finding your best rate class…','Almost there…'];
+  const el=document.getElementById('analyzeLine');let i=0;
+  const iv=setInterval(()=>{i++;if(i<lines.length){el.textContent=lines[i]}},560);
+  setTimeout(()=>{clearInterval(iv);showResult();},3000);
+}
+// simple illustrative pricing model (NOT a real quote)
+function estimate(){
+  const age=F.data.age||35, cov=F.data.cov||500000;
+  const per=cov/100000;
+  let base=2.2 + Math.pow(Math.max(0,age-25),1.55)*0.14; // per 100k
+  const h={'Excellent':.85,'Good':1,'Fair':1.4,'Declined before':1.9}[F.data.step4]||1;
+  const t=F.data.step5==='Yes'?2.3:1;
+  const g=F.data.step2==='Female'?.88:1;
+  let m=base*per*h*t*g;
+  return Math.max(9,Math.round(m));
+}
+function showResult(){
+  const price=estimate();
+  document.getElementById('priceOut').textContent=price;
+  document.getElementById('pdesc').textContent='Estimated for $'+(F.data.cov||500000).toLocaleString()+' of coverage at age '+(F.data.age||35)+'. A licensed Aevum advisor will confirm your exact rate — often the same day.';
+  show('result');stepLabel.textContent='Your estimate';
+  // count up price
+  const out=document.getElementById('priceOut');let c=Math.max(1,price-18);
+  const iv=setInterval(()=>{c++;if(c>=price){c=price;clearInterval(iv)}out.textContent=c},26);
+}
+document.getElementById('bookBtn').addEventListener('click',e=>{e.preventDefault();alert('Draft demo — at launch this books your advisor call and sends your estimate. Wire to GoHighLevel / calendar before go-live.');});
+render();
+</script>
 </body>
 </html>
