@@ -1,435 +1,343 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Perenne — A whole life, protected.</title>
-<meta name="description" content="Perenne is a modern American life insurance agency. Watch a lifetime pass, then protect it in minutes — real estimate, no exam for most, one advisor for life.">
-<!-- DRAFT — working name PERENNE (verify domain/trademark). Not for public solicitation until licensing complete. On-screen figures are illustrative estimates. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Perenne — A whole life, covered in minutes | Life insurance for FL, MD, VA & PA</title>
+<meta name="description" content="Perenne is a modern life insurance agency for Florida, Maryland, Virginia & Pennsylvania. See what you qualify for in minutes — no exam for most, one advisor for life, a real estimate on screen.">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,1,400;9..144,1,500&family=Inter:wght@400;500;600&family=Archivo+Expanded:wght@600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#060709; --bg2:#0B0D12; --ink:#F3EFE7; --mut:#9A9488; --mut2:#5E5A52;
-  --red:#C02A32; --red2:#E23B44; --amber:#C99A5B; --teal:#2C4A55; --line:rgba(243,239,231,.09);
+ --bg:#F6F8FB;--ink:#0B1C33;--slate:#3D4F66;--blue:#1857F0;--blue2:#2E5BFF;--blueglow:rgba(24,87,240,.10);
+ --line:#E3E8F1;--card:#FFFFFF;--red:#E5342B;--mut:#8B97AB;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased}
-html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden;cursor:none}
-@media(hover:none){body{cursor:auto}}
-.serif{font-family:Fraunces,Georgia,serif}
-.exp{font-family:"Archivo Expanded",Inter,sans-serif;letter-spacing:-.02em}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:400;letter-spacing:-.025em;line-height:1}
-img,video{max-width:100%;display:block}a{color:inherit;text-decoration:none}
-::selection{background:var(--red);color:#fff}
-.wrap{max-width:1280px;margin:0 auto;padding:0 34px}
-@media(max-width:600px){.wrap{padding:0 22px}}
-/* grain + vignette + cursor */
-.grain{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.055;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.vig{position:fixed;inset:0;z-index:8999;pointer-events:none;box-shadow:inset 0 0 220px 40px rgba(0,0,0,.7)}
-.cur{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--red2);z-index:9999;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:difference}
-.cur-r{position:fixed;width:36px;height:36px;border:1px solid rgba(255,255,255,.4);border-radius:50%;z-index:9998;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
-.cur-r.hot{width:66px;height:66px;border-color:var(--red2)}
-@media(hover:none){.cur,.cur-r{display:none}}
-/* type */
-.eyebrow{font-family:Inter;font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--amber)}
-.cta{position:relative;display:inline-flex;align-items:center;gap:12px;font-family:Inter;font-weight:500;font-size:15.5px;cursor:none;border:none;background:none;color:inherit}
-.cta-fill{padding:18px 34px;background:var(--red);color:#fff;overflow:hidden;transition:background .3s}
-.cta-fill:hover{background:var(--red2)}
-.cta-fill .a{transition:transform .35s cubic-bezier(.16,1,.3,1)}.cta-fill:hover .a{transform:translateX(6px)}
-.cta-line{padding-bottom:6px;border-bottom:1px solid rgba(243,239,231,.4)}
-.cta-line:hover{border-color:var(--red2)}
-/* nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:26px 0;transition:.4s}
-nav.small{background:rgba(6,7,9,.7);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:14px 0}
-.nav-in{display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:"Archivo Expanded",sans-serif;font-weight:700;font-size:19px;letter-spacing:.24em;color:#fff}.logo b{color:var(--red2);font-weight:700}
-.nlinks{display:flex;gap:36px;align-items:center}
-.nlinks a:not(.cta){font-size:13px;letter-spacing:.04em;color:var(--mut);font-weight:500;transition:.25s}.nlinks a:not(.cta):hover{color:#fff}
-.navcta{font-size:13px;padding:11px 22px}
-@media(max-width:900px){.nlinks a:not(.cta){display:none}}
-/* HERO full-screen aging scrub */
-.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:#000}
-.hero-frames{position:absolute;inset:0}
-.hero-frames .frame{position:absolute;inset:0;opacity:0}
-.hero-frames .frame img{width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:saturate(.7) contrast(1.06) brightness(.72)}
-.hero::after{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(120% 90% at 50% 40%,transparent 30%,rgba(6,7,9,.6) 78%,var(--bg)),linear-gradient(0deg,var(--bg) 2%,transparent 30%)}
-.hero-copy{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(24px,6vw,90px) clamp(70px,10vh,120px)}
-.hero-age{position:absolute;top:clamp(96px,16vh,180px);left:clamp(24px,6vw,90px);z-index:5;font-family:"Archivo Expanded",sans-serif;font-weight:800;font-size:clamp(80px,20vw,240px);line-height:.8;color:rgba(243,239,231,.14);letter-spacing:-.04em}
-.hero-age b{color:var(--red2)}
-.hero h1{font-size:clamp(42px,7vw,104px);font-weight:400;letter-spacing:-.035em;max-width:16ch}
-.hero h1 em{font-style:italic}
-.hero .sub{font-size:clamp(15px,1.4vw,19px);color:var(--mut);max-width:46ch;margin:20px 0 30px}
-.hero-cta{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-.hero-scroll{position:absolute;bottom:26px;right:clamp(24px,6vw,90px);z-index:5;font-family:Inter;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut2);writing-mode:vertical-rl}
-.bars::before,.bars::after{content:"";position:fixed;left:0;right:0;height:0;background:#000;z-index:70;pointer-events:none;transition:height .8s cubic-bezier(.7,0,.3,1)}
-.bars::before{top:0}.bars::after{bottom:0}
-/* sections */
-.sec{padding:clamp(90px,13vw,170px) 0;position:relative}
-.kinetic{font-family:Fraunces;font-weight:400;font-size:clamp(34px,6.6vw,104px);line-height:1.02;letter-spacing:-.03em;max-width:20ch}
-.kinetic em{font-style:italic;color:var(--amber)}
-.lead{font-size:clamp(16px,1.5vw,19px);color:var(--mut);max-width:56ch;line-height:1.6}
-.idx{font-family:Inter;font-size:12px;letter-spacing:.14em;color:var(--mut2)}
-/* full-bleed cinematic image */
-.bleed{position:relative;height:100vh;min-height:560px;overflow:hidden}
-.bleed .bg{position:absolute;inset:-12% 0;background-size:cover;background-position:center;will-change:transform}
-.bleed .bg.dark{filter:brightness(.55) saturate(.8)}
-.bleed::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg),transparent 45%,rgba(6,7,9,.35)),linear-gradient(90deg,rgba(6,7,9,.7),transparent 55%)}
-.bleed-copy{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(24px,6vw,90px);max-width:900px}
-.bleed video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(.85)}
-/* two-lives */
-.arc{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin-top:54px}
-@media(max-width:820px){.arc{grid-template-columns:1fr}}
-.arc>div{padding:44px 40px 44px 0}
-.arc>div:first-child{border-right:1px solid var(--line);padding-right:40px}
-@media(max-width:820px){.arc>div:first-child{border-right:none;border-bottom:1px solid var(--line);padding-right:0}.arc>div{padding:36px 0}}
-.arc h4{font-family:Inter;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:24px}
-.arc.a1 h4{color:var(--mut2)}.arc.a2 h4{color:var(--red2)}
-.arc p{padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;color:var(--mut)}
-.arc .a2 p{color:var(--ink)}.arc p:last-child{border:none}
-/* benefits grid */
-.bens{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--line)}
-@media(max-width:900px){.bens{grid-template-columns:1fr}}
-.ben{background:var(--bg);padding:40px 34px;min-height:260px}
-.ben .n{font-family:"Archivo Expanded";font-weight:700;font-size:13px;color:var(--red2);letter-spacing:.02em}
-.ben h3{font-family:Fraunces;font-size:24px;font-weight:400;margin:26px 0 12px}
-.ben p{font-size:15px;color:var(--mut);line-height:1.6}
-/* how */
-.how{margin-top:50px}
-.how-row{display:grid;grid-template-columns:100px 1fr;gap:32px;padding:40px 0;border-top:1px solid var(--line);align-items:baseline}
-.how-row .num{font-family:"Archivo Expanded";font-weight:800;font-size:30px;color:var(--red2)}
-.how-row h3{font-size:clamp(24px,3vw,38px);font-weight:400;margin-bottom:10px}
-.how-row p{color:var(--mut);font-size:16px;max-width:60ch}
-@media(max-width:700px){.how-row{grid-template-columns:56px 1fr;gap:16px}}
-/* funnel */
-.funnel{max-width:680px;margin:56px auto 0;background:var(--bg2);border:1px solid var(--line);overflow:hidden}
-.ftop{display:flex;justify-content:space-between;align-items:center;padding:26px 32px 16px}.ftop .tt{font-family:Fraunces;font-size:17px}.ftop .sl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
-.prog{height:2px;background:rgba(243,239,231,.08);margin:0 32px}.prog i{display:block;height:100%;width:16%;background:var(--red2);transition:width .5s cubic-bezier(.16,1,.3,1)}
-.fbody{padding:34px 32px 6px;min-height:280px}
-.fstep{display:none}.fstep.active{display:block;animation:fu .5s cubic-bezier(.16,1,.3,1)}
-@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.fq{font-family:Fraunces;font-size:26px;margin-bottom:6px}.fsub{color:var(--mut);font-size:14px;margin-bottom:24px}
-.opts{display:grid;gap:10px}.opts.two{grid-template-columns:1fr 1fr}
-.opt{padding:16px 18px;border:1px solid var(--line);cursor:none;font-size:15.5px;transition:.2s;display:flex;justify-content:space-between;align-items:center;color:var(--ink)}
-.opt:hover{border-color:var(--amber);background:rgba(201,154,91,.06)}.opt.sel{border-color:var(--red2);background:rgba(224,59,68,.08)}
-.opt .k{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--mut2)}.opt.sel .k{border-color:var(--red2);background:var(--red2);box-shadow:inset 0 0 0 3px var(--bg2)}
-.fin{width:100%;padding:15px 17px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:15.5px;font-family:Inter;margin-bottom:11px}.fin:focus{outline:none;border-color:var(--amber)}.fin::placeholder{color:var(--mut2)}
-.sval{font-family:Fraunces;font-size:42px;text-align:center;margin-bottom:14px}.sval em{font-style:normal;color:var(--red2)}
-input[type=range]{width:100%;-webkit-appearance:none;height:2px;background:rgba(243,239,231,.15);outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--red2);cursor:none;border:4px solid var(--bg2)}
-.ffoot{display:flex;justify-content:space-between;align-items:center;padding:16px 32px 26px}
-.fback{background:none;border:none;color:var(--mut);font-size:14px;cursor:none;font-family:Inter}.fback:hover{color:#fff}
-.fnext{background:var(--red);color:#fff;border:none;padding:14px 28px;font-family:Inter;font-weight:500;font-size:15px;cursor:none}.fnext:hover{background:var(--red2)}
-.consent{padding:0 32px 22px;font-size:11px;color:var(--mut2);line-height:1.6}.consent label{display:flex;gap:9px;align-items:flex-start;cursor:none}.consent input{margin-top:2px;accent-color:var(--red)}
-.spin{width:54px;height:54px;margin:0 auto 22px;border-radius:50%;border:2px solid rgba(243,239,231,.1);border-top-color:var(--red2);animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-.analyzing{text-align:center;padding:40px 10px}.analyzing .l{color:var(--mut);font-size:15px}
-.result{text-align:center;padding:12px 6px}.result .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;display:block}
-.result .price{font-family:Fraunces;font-size:clamp(52px,9vw,76px)}.result .price small{font-size:22px;color:var(--mut)}
-.result .pd{color:var(--mut);font-size:14.5px;max-width:44ch;margin:10px auto 22px}.result .en{font-size:11px;color:var(--mut2);max-width:46ch;margin:16px auto 0;line-height:1.6}
-/* offer */
-.offer{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;margin-top:52px;align-items:start}
-@media(max-width:900px){.offer{grid-template-columns:1fr;gap:34px}}
-.oli{display:grid;grid-template-columns:40px 1fr;gap:16px;padding:22px 0;border-top:1px solid var(--line);font-size:16px;color:var(--mut)}.oli:first-child{border:none}
-.oli .c{font-family:Fraunces;font-size:20px;color:var(--amber)}.oli b{color:var(--ink);font-weight:600}
-.ocard{background:var(--bg2);border:1px solid var(--line);padding:40px 34px;position:sticky;top:100px}
-.ocard h3{font-family:Fraunces;font-size:30px;margin:12px 0}.ocard p{color:var(--mut);font-size:15px;line-height:1.6}.ocard .rz{height:1px;background:var(--line);margin:22px 0}.ocard .sm{font-size:13px;color:var(--mut2)}
-/* faq / obj */
-details{border-top:1px solid var(--line);padding:2px 0}
-summary{padding:26px 0;font-family:Fraunces;font-size:clamp(19px,2vw,26px);cursor:none;list-style:none;display:flex;justify-content:space-between;gap:20px;align-items:center}
-summary::-webkit-details-marker{display:none}summary::after{content:"+";color:var(--red2);font-size:26px;transition:.3s}details[open] summary::after{transform:rotate(45deg)}
-details .ans{padding:0 0 28px;color:var(--mut);font-size:16px;line-height:1.65;max-width:76ch}
-/* final */
-.final{text-align:center}.final h2{font-size:clamp(40px,7vw,92px);max-width:16ch;margin:22px auto}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Satoshi,-apple-system,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+a{color:inherit;text-decoration:none}
+.mono{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-size:12px;color:var(--slate)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,54px)}
+/* ---------- custom cursor ---------- */
+.cur{position:fixed;top:0;left:0;width:34px;height:34px;border:1.5px solid var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s,border-color .2s;mix-blend-mode:multiply}
+.cur.big{width:64px;height:64px;background:var(--blueglow)}
+.dot{position:fixed;top:0;left:0;width:5px;height:5px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+@media(hover:none){.cur,.dot{display:none}body{cursor:auto}}
+/* ---------- blueprint grid ---------- */
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:72px 72px;opacity:.5;mask-image:radial-gradient(120% 100% at 50% 0%,#000 40%,transparent 85%);pointer-events:none}
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,5vw,54px);background:rgba(246,248,251,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{font-weight:900;font-size:20px;letter-spacing:-.02em}.logo b{color:var(--red)}
+.nlinks{display:flex;gap:30px;font-weight:500;font-size:15px;color:var(--slate)}
+.nlinks a{position:relative}.nlinks a:hover{color:var(--ink)}
+.nlinks a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--blue);transition:width .25s}
+.nlinks a:hover::after{width:100%}
+.nright{display:flex;align-items:center;gap:22px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;padding:13px 22px;border-radius:10px;transition:transform .18s,box-shadow .18s,background .18s}
+.btn.blue{background:var(--blue);color:#fff;box-shadow:0 8px 22px -8px rgba(24,87,240,.6)}
+.btn.blue:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(24,87,240,.7)}
+.btn.dark{background:var(--ink);color:#fff}.btn.dark:hover{transform:translateY(-2px)}
+.btn .ar{transition:transform .2s}.btn:hover .ar{transform:translateX(4px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);position:relative}
+@media(max-width:900px){.nlinks{display:none}}
+/* ---------- hero ---------- */
+.hero{position:relative;padding:150px 0 90px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:26px}
+.eyebrow .pip{width:7px;height:7px;background:var(--blue);border-radius:50%;box-shadow:0 0 0 4px var(--blueglow);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px var(--blueglow)}50%{box-shadow:0 0 0 8px transparent}}
+h1.hh{font-weight:900;font-size:clamp(44px,6.6vw,88px);line-height:.98;letter-spacing:-.045em}
+h1.hh .b{color:var(--blue)}
+.hsub{color:var(--slate);font-size:clamp(16px,1.5vw,19px);max-width:44ch;margin:26px 0 34px}
+.hcta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.brk{position:relative;padding:14px 22px}
+.brk::before,.brk::after{content:"";position:absolute;width:10px;height:10px;border-color:var(--blue);border-style:solid}
+.brk::before{top:0;left:0;border-width:1.5px 0 0 1.5px}
+.brk::after{bottom:0;right:0;border-width:0 1.5px 1.5px 0}
+.htrust{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap}
+.htrust .t{display:flex;flex-direction:column}
+.htrust .t b{font-size:26px;font-weight:900;letter-spacing:-.03em}
+.htrust .t span{font-size:12.5px;color:var(--slate)}
+/* lifeline visual */
+.viz{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 30px 60px -30px rgba(11,28,51,.18)}
+.viz .vtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.viz .age{font-weight:900;font-size:40px;letter-spacing:-.03em}.viz .age small{font-size:15px;color:var(--slate);font-weight:500}
+.viz svg{width:100%;height:230px;display:block}
+.vlabels{display:flex;justify-content:space-between;margin-top:6px}
+.vlabels span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut)}
+.vnote{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.vnote .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.vnote .v{font-weight:900;font-size:20px;color:var(--blue);letter-spacing:-.02em}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.viz{order:-1}}
+/* ---------- sections ---------- */
+section{position:relative;padding:clamp(70px,10vw,120px) 0}
+.klbl{margin-bottom:20px}
+h2.big{font-weight:900;font-size:clamp(32px,5vw,62px);line-height:1.0;letter-spacing:-.04em;text-transform:uppercase}
+h2.big .b{color:var(--blue)}
+.lead{color:var(--slate);font-size:18px;max-width:56ch;margin-top:18px}
+.center{text-align:center}.center .lead{margin-left:auto;margin-right:auto}
+/* leaks list */
+.leaks{margin-top:56px;border-top:1px solid var(--line)}
+.leak{display:grid;grid-template-columns:120px 92px 1fr;gap:24px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line);position:relative}
+.leak .no{font-weight:900;font-size:56px;color:var(--blue);letter-spacing:-.04em;line-height:1}
+.leak .ibox{width:74px;height:74px;border:1.5px dashed #B9C4D8;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--blue);transition:.2s}
+.leak:hover .ibox{border-color:var(--blue);background:var(--blueglow)}
+.leak h3{font-size:19px;font-weight:700;letter-spacing:-.01em;text-transform:uppercase}
+.leak p{color:var(--slate);font-size:15.5px;margin-top:5px;max-width:60ch}
+@media(max-width:700px){.leak{grid-template-columns:64px 1fr;gap:16px}.leak .ibox{display:none}.leak .no{font-size:40px}}
+/* product cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:56px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;transition:.22s;position:relative;overflow:hidden}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 24px 46px -24px rgba(11,28,51,.22);border-color:#C9D4E8}
+.pcard .ibox{width:52px;height:52px;border:1.5px dashed #B9C4D8;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--blue);margin-bottom:18px}
+.pcard h3{font-weight:900;font-size:21px;letter-spacing:-.02em}
+.pcard p{color:var(--slate);font-size:14.5px;margin:8px 0 16px}
+.pcard .go{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);display:inline-flex;gap:7px;align-items:center}
+.pcard .go .ar{transition:transform .2s}.pcard:hover .go .ar{transform:translateX(4px)}
+/* marquee */
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden;white-space:nowrap;margin-top:70px}
+.marq .track{display:inline-flex;gap:52px;animation:scrollx 26s linear infinite}
+.marq .track span{font-weight:900;font-size:22px;letter-spacing:-.02em;color:#C3CCDC;text-transform:uppercase}
+.marq .track b{color:var(--blue)}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:56px}
+.stat{background:var(--bg);padding:34px 24px}
+.stat b{display:block;font-weight:900;font-size:clamp(34px,4vw,50px);letter-spacing:-.04em;color:var(--ink)}
+.stat b i{color:var(--blue);font-style:normal}
+.stat span{color:var(--slate);font-size:14px;margin-top:4px;display:block}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+/* CTA band */
+.band{background:var(--ink);border-radius:24px;padding:clamp(40px,7vw,80px);text-align:center;position:relative;overflow:hidden}
+.band .grid-bg{opacity:.15;mask-image:radial-gradient(100% 100% at 50% 0,#000,transparent 80%)}
+.band h2{color:#fff;font-weight:900;font-size:clamp(30px,4.6vw,56px);letter-spacing:-.04em;text-transform:uppercase;position:relative}
+.band h2 .b{color:var(--blue2)}
+.band p{color:#AEB9CC;max-width:52ch;margin:18px auto 32px;position:relative}
+/* accordion */
+.acc{margin-top:44px;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line);padding:22px 0}
+summary{cursor:none;list-style:none;display:flex;justify-content:space-between;gap:20px;font-weight:700;font-size:clamp(17px,2vw,22px);letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--blue);font-size:26px;font-weight:400}
+details[open] summary::after{content:"–"}
+details .a{color:var(--slate);margin-top:14px;max-width:74ch;font-size:15.5px}
 /* footer */
-footer{border-top:1px solid var(--line);padding:70px 0 44px;font-size:13px;color:var(--mut2);background:#040507}
-.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:44px}@media(max-width:760px){.fg{grid-template-columns:1fr}}
-footer h4{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:16px}footer ul{list-style:none}footer li{margin-bottom:11px}footer a{color:var(--ink);opacity:.65}footer a:hover{opacity:1}
-.legal{border-top:1px solid var(--line);padding-top:28px;line-height:1.7}
-.reveal{will-change:transform,opacity}
-.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;z-index:200;background:var(--red);color:#fff;padding:10px 16px}
+footer{border-top:1px solid var(--line);padding:64px 0 40px;margin-top:20px}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
+footer h4{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:16px}
+footer ul{list-style:none}footer li{margin-bottom:10px}footer a{color:var(--slate);font-size:14.5px}footer a:hover{color:var(--blue)}
+.legal{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);color:var(--mut);font-size:12px;line-height:1.6;max-width:none}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
 </style>
 </head>
-<body class="bars">
-<div class="grain"></div><div class="vig"></div>
-<div class="cur" id="cur"></div><div class="cur-r" id="curR"></div>
-<a class="skip" href="#quote">Skip to estimate</a>
+<body>
+<div class="cur" id="cur"></div><div class="dot" id="cdot"></div>
 
-<nav id="nav"><div class="wrap nav-in">
-  <a class="logo mag" href="/">PERENNE<b>.</b></a>
+<nav>
+  <a class="logo" href="/">PERENNE<b>.</b></a>
   <div class="nlinks">
-    <a href="final-expense-insurance.html">Final&nbsp;Expense</a><a href="term-life-insurance.html">Term</a><a href="whole-life-insurance.html">Whole&nbsp;Life</a><a href="no-exam-life-insurance.html">No‑Exam</a><a href="#faq">Answers</a>
-    <a class="cta cta-fill navcta mag" href="underwriting-engine.html">Check eligibility</a>
+    <a href="final-expense-insurance.html">Final Expense</a>
+    <a href="term-life-insurance.html">Term</a>
+    <a href="whole-life-insurance.html">Whole Life</a>
+    <a href="no-exam-life-insurance.html">No-Exam</a>
+    <a href="#answers">Answers</a>
   </div>
-</div></nav>
+  <div class="nright">
+    <span class="mono" style="opacity:.8">FL · MD · VA · PA</span>
+    <a class="btn blue" href="underwriting-engine.html">Check eligibility <span class="ar">→</span></a>
+  </div>
+</nav>
 
-<!-- HERO: full-screen aging scrub -->
-<header class="hero" id="hero">
-  <div class="hero-frames" id="frames">
-    <div class="frame" data-age="30"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_064526_5b124819-4483-4789-bbf9-b50911b499d3.png" alt="A man at the start of his life" fetchpriority="high"></div>
-    <div class="frame" data-age="45"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_064619_9017925f-9f68-4037-ac1e-3fc85d53f993.png" alt="The same man, middle years" loading="lazy"></div>
-    <div class="frame" data-age="60"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_064622_c4e7da08-901a-4f30-81c7-dfac3c19f2ce.png" alt="The same man, older" loading="lazy"></div>
-    <div class="frame" data-age="75"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_064625_095c12bb-68ea-483b-b582-cb97be7602da.png" alt="The same man, later years" loading="lazy"></div>
-    <div class="frame" data-age="88"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_064627_1aadcfbf-7274-4a70-8d73-67a15984da23.png" alt="The same man, the end of a full life" loading="lazy"></div>
-  </div>
-  <div class="hero-age">AGE&nbsp;<b id="ageNum">30</b></div>
-  <div class="hero-copy">
-    <div class="reveal"><span class="eyebrow">Perenne — everlasting protection</span></div>
-    <h1 class="reveal">A whole life passes<br>in <em>one scroll.</em></h1>
-    <p class="sub reveal">Watch a lifetime go by in seconds. Then take a few minutes to make sure the people living yours are never left behind. No exam for most. No spam. No games.</p>
-    <div class="hero-cta reveal">
-      <a href="#quote" class="cta cta-fill mag"><span>See my estimate</span><span class="a">→</span></a>
-      <a href="#why" class="cta cta-line mag">Why it matters</a>
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="pip"></span><span class="mono">Everlasting protection · Est. 2026</span></div>
+      <h1 class="hh">A whole life.<br><span class="b">Covered in minutes.</span></h1>
+      <p class="hsub">Watch a lifetime move across the screen — then take a few minutes to make sure the people living yours are never left exposed. No exam for most. One advisor for life. A real number, on screen.</p>
+      <div class="hcta">
+        <a class="btn dark" href="underwriting-engine.html">See what you qualify for <span class="ar">→</span></a>
+        <a class="btn ghost brk" href="#leaks">Why it matters</a>
+      </div>
+      <div class="htrust">
+        <div class="t"><b id="s1">40+</b><span>A-rated carriers shopped</span></div>
+        <div class="t"><b id="s2">24h</b><span>Most decisions, no exam</span></div>
+        <div class="t"><b id="s3">14-day</b><span>Free look. Full refund.</span></div>
+      </div>
+    </div>
+    <!-- animated lifeline -->
+    <div class="viz rv">
+      <div class="vtop"><div class="age">AGE&nbsp;<span id="vage">34</span></div><span class="mono" id="vstage">Building years</span></div>
+      <svg viewBox="0 0 520 230" preserveAspectRatio="none" id="lifeSvg">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#2E5BFF"/><stop offset="1" stop-color="#1857F0"/>
+          </linearGradient>
+          <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="rgba(24,87,240,.16)"/><stop offset="1" stop-color="rgba(24,87,240,0)"/>
+          </linearGradient>
+        </defs>
+        <g id="vgrid" stroke="#E9EEF7" stroke-width="1"></g>
+        <path id="lifeArea" fill="url(#fill)"></path>
+        <path id="lifePath" fill="none" stroke="url(#lg)" stroke-width="3.5" stroke-linecap="round"></path>
+        <circle id="lifeDot" r="7" fill="#1857F0" stroke="#fff" stroke-width="3"></circle>
+      </svg>
+      <div class="vlabels"><span>30</span><span>45</span><span>60</span><span>75</span><span>90</span></div>
+      <div class="vnote"><span class="k">Protected for them</span><span class="v" id="vcov">$500,000</span></div>
     </div>
   </div>
-  <div class="hero-scroll">Scroll to live a life</div>
 </header>
 
-<!-- KINETIC STATEMENT -->
-<section class="sec" style="text-align:center">
+<section id="leaks">
   <div class="wrap">
-    <p class="kinetic split" style="margin:0 auto">Every morning you show up for them. <em>Life insurance is how you keep showing up</em> — even on the one morning you can't.</p>
-  </div>
-</section>
-
-<!-- FULL-BLEED: family doorway -->
-<section class="bleed" id="why">
-  <div class="bg dark" data-par style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_134037_d7e31bd7-42c2-4ac6-833d-e2d27b9d3185.png')"></div>
-  <div class="bleed-copy">
-    <div class="reveal"><span class="eyebrow">The same night, two different families</span></div>
-    <h2 class="kinetic reveal" style="margin:18px 0">The light stays on — <em>or it doesn't.</em></h2>
-    <p class="lead reveal">One decision, made on an ordinary evening, is the entire difference between the two. Here's what it actually decides.</p>
-  </div>
-</section>
-
-<!-- TWO LIVES -->
-<section class="sec"><div class="wrap">
-  <div class="arc a1"><div>
-    <h4>Without a plan</h4>
-    <p>The mortgage doesn't pause to grieve — the first bill lands before the flowers wilt.</p>
-    <p>Your partner does the math alone at the kitchen table, at 2 a.m., again.</p>
-    <p>College quietly comes off the table. The plans you made out loud stop happening.</p>
-    <p>The life you built gets sold off, piece by piece, just to keep the lights on.</p>
-  </div>
-  <div style="grid-column:2;grid-row:1" class="a2 arc-r"></div></div>
-  <div class="arc a2" style="margin-top:-1px"><div style="display:none"></div><div>
-    <h4>With Perenne</h4>
-    <p>A tax-free check reaches your family in days — the paycheck simply doesn't stop.</p>
-    <p>The house stays the house. The address on the holiday cards never changes.</p>
-    <p>They grieve like people, not accountants. The money question is already answered.</p>
-    <p>Your income keeps showing up for them, in your absence, exactly like you did.</p>
-  </div></div>
-  <div class="reveal" style="margin-top:44px"><a href="#quote" class="cta cta-fill mag"><span>Keep the light on — see my estimate</span><span class="a">→</span></a></div>
-</div></section>
-
-<!-- FULL-BLEED VIDEO -->
-<section class="bleed">
-  <video autoplay muted loop playsinline poster="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_064526_5b124819-4483-4789-bbf9-b50911b499d3.png"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_052927_2d7071d9-661a-4de9-ada1-48aaf2ce6f61.mp4" type="video/mp4"></video>
-  <div class="bleed-copy">
-    <div class="reveal"><span class="eyebrow">This is who you're really doing it for</span></div>
-    <h2 class="kinetic reveal" style="margin:18px 0">Ten quiet minutes now<br>buys them <em>a lifetime of okay.</em></h2>
-  </div>
-</section>
-
-<!-- BENEFITS: why you should get it -->
-<section class="sec" id="benefits"><div class="wrap">
-  <div class="reveal"><span class="idx">01 / What life insurance actually does for you</span></div>
-  <h2 class="kinetic reveal" style="margin:16px 0">Not a bill. <em>A promise that keeps its word.</em></h2>
-  <p class="lead reveal">People think of it as a monthly cost. It's the opposite — it's the one financial move that turns a small, certain amount today into an enormous, tax-free certainty for the people you love. Here's everything it quietly protects.</p>
-  <div class="bens">
-    <div class="ben"><div class="n">01</div><h3>Replaces your income</h3><p>The paycheck your family lives on doesn't vanish. The mortgage, groceries, and daily life keep getting paid for years — by you, still.</p></div>
-    <div class="ben"><div class="n">02</div><h3>Pays off the mortgage</h3><p>The home stays the home. No forced sale, no moving the kids mid-year, no losing the one place that holds every memory.</p></div>
-    <div class="ben"><div class="n">03</div><h3>Protects the kids' future</h3><p>College, activities, the launch into adulthood you promised — funded, whether or not you're there to write the checks.</p></div>
-    <div class="ben"><div class="n">04</div><h3>Erases the debt</h3><p>Co-signed loans, credit cards, the car — gone, instead of landing on the people already grieving you.</p></div>
-    <div class="ben"><div class="n">05</div><h3>Covers final costs</h3><p>A funeral averages $8,000-$12,000. Your family plans a goodbye, not a fundraiser, at the worst possible moment.</p></div>
-    <div class="ben"><div class="n">06</div><h3>Pays out tax-free</h3><p>In almost every case the death benefit reaches your beneficiaries income-tax-free — the whole amount, exactly as intended.</p></div>
-    <div class="ben"><div class="n">07</div><h3>Locks in today's price</h3><p>Rates are set by your age and health right now. Buying young quietly freezes the cheapest rate you'll ever qualify for.</p></div>
-    <div class="ben"><div class="n">08</div><h3>Can build cash value</h3><p>Permanent options grow a tax-advantaged pool you can borrow against for a home, a business, or retirement — living benefits, not just a payout.</p></div>
-    <div class="ben"><div class="n">09</div><h3>Buys you peace of mind</h3><p>The quiet, underrated one: you stop carrying the "what if" every time you kiss them goodnight. That's worth the premium by itself.</p></div>
-  </div>
-</div></section>
-
-<!-- FULL-BLEED: elderly hands macro -->
-<section class="bleed">
-  <div class="bg dark" data-par style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_134041_ddb54e43-9824-4d59-b76c-e34c4e42f41d.png')"></div>
-  <div class="bleed-copy" style="max-width:760px">
-    <h2 class="kinetic reveal">The people at the start of their life <em>are counting on the one at the end of yours.</em></h2>
-  </div>
-</section>
-
-<!-- HOW -->
-<section class="sec" id="how"><div class="wrap">
-  <div class="reveal"><span class="idx">02 / How it works</span></div>
-  <h2 class="kinetic reveal" style="margin:16px 0 8px">Three steps. About five minutes. <em>Then it's off your list for good.</em></h2>
-  <div class="how">
-    <div class="how-row reveal"><div class="num">01</div><div><h3>Answer a few questions</h3><p>Age, health basics, how much coverage. Two minutes. No SSN, no medical records to dig up, and nothing sold to marketers.</p></div></div>
-    <div class="how-row reveal"><div class="num">02</div><div><h3>See your estimate instantly</h3><p>We match you across 40+ A-rated carriers and show a real estimate on screen — not a teaser that triples once you hand over your details.</p></div></div>
-    <div class="how-row reveal"><div class="num">03</div><div><h3>Lock it in from your couch</h3><p>E-sign in minutes; most healthy applicants skip the exam entirely. Complex history? A human fights for you instead of an algorithm auto-declining you.</p></div></div>
-  </div>
-</div></section>
-
-<!-- FUNNEL -->
-<section class="sec" id="quote"><div class="wrap">
-  <div class="reveal" style="text-align:center;max-width:660px;margin:0 auto">
-    <span class="idx">03 / Your estimate</span>
-    <h2 class="kinetic reveal" style="margin:16px auto">See your number <em>before you say your name.</em></h2>
-    <p class="lead reveal" style="margin:0 auto">No login. No credit check. No one calls unless you ask them to.</p>
-  </div>
-  <div class="funnel reveal" id="funnel">
-    <div class="ftop"><span class="tt">Your instant estimate</span><span class="sl" id="stepLabel">Step 1 of 6</span></div>
-    <div class="prog"><i id="prog"></i></div>
-    <div class="fbody" id="fBody">
-      <div class="fstep active" data-step="1"><div class="fq">What are you really protecting?</div><div class="fsub">No wrong answer — it just shapes the estimate around your life.</div><div class="opts"><div class="opt" data-v="Family &amp; income"><span>My family &amp; income</span><span class="k"></span></div><div class="opt" data-v="Mortgage"><span>My mortgage / home</span><span class="k"></span></div><div class="opt" data-v="Business"><span>My business / partners</span><span class="k"></span></div><div class="opt" data-v="Final expenses"><span>Final expenses &amp; legacy</span><span class="k"></span></div></div></div>
-      <div class="fstep" data-step="2"><div class="fq">What's your biological sex?</div><div class="fsub">Insurers price coverage on it — that's the only reason we ask.</div><div class="opts two"><div class="opt" data-v="Male"><span>Male</span><span class="k"></span></div><div class="opt" data-v="Female"><span>Female</span><span class="k"></span></div></div></div>
-      <div class="fstep" data-step="3"><div class="fq">How old are you?</div><div class="fsub">Today is the youngest — and cheapest — you'll ever be to start.</div><div class="sval"><span id="ageV">35</span> <span style="font-size:18px;color:var(--mut)">yrs</span></div><input type="range" id="age" min="18" max="75" value="35"></div>
-      <div class="fstep" data-step="4"><div class="fq">How's your health, generally?</div><div class="fsub">A ballpark is fine — nothing here is an exam or a decision.</div><div class="opts"><div class="opt" data-v="Excellent"><span>Excellent — no real issues</span><span class="k"></span></div><div class="opt" data-v="Good"><span>Good — a thing or two managed</span><span class="k"></span></div><div class="opt" data-v="Fair"><span>Average — a few things going on</span><span class="k"></span></div><div class="opt" data-v="Declined before"><span>I've been declined before</span><span class="k"></span></div></div></div>
-      <div class="fstep" data-step="5"><div class="fq">Nicotine in the last 12 months?</div><div class="fsub">Vapes count — honesty keeps your policy valid, and there are options either way.</div><div class="opts two"><div class="opt" data-v="No"><span>No</span><span class="k"></span></div><div class="opt" data-v="Yes"><span>Yes</span><span class="k"></span></div></div></div>
-      <div class="fstep" data-step="6"><div class="fq">How much peace of mind?</div><div class="fsub">Not sure? Most people start by covering the mortgage plus a few years of income.</div><div style="margin-bottom:18px"><div class="sval" style="font-size:32px"><span id="covV">$500,000</span></div><input type="range" id="cov" min="50000" max="2000000" step="50000" value="500000"></div><input class="fin" id="fname" type="text" placeholder="First name"><input class="fin" id="email" type="email" placeholder="Email address"><input class="fin" id="phone" type="tel" placeholder="Mobile (optional)"></div>
-      <div class="fstep" data-step="analyzing"><div class="analyzing"><div class="spin"></div><div class="l" id="aLine">Scanning 40+ A-rated carriers…</div></div></div>
-      <div class="fstep" data-step="result"><div class="result"><span class="tag">Your estimate</span><div class="price">$<span id="priceOut">28</span><small>/mo</small></div><div class="pd" id="pd">An early estimate for $500,000 of coverage. A licensed advisor confirms your exact rate — often the same day.</div><a href="#" class="cta cta-fill mag" id="bookBtn" style="justify-content:center"><span>Talk to a licensed advisor</span><span class="a">→</span></a><div class="en">An estimate, not a quote, offer, or approval. Based only on what you entered. Eligibility and pricing are determined solely by the issuing carrier through underwriting.</div></div></div>
+    <div class="klbl mono rv">01 — The problem</div>
+    <h2 class="big rv">Where families get<br><span class="b">left exposed.</span></h2>
+    <p class="lead rv d1">Most people don't have a money problem. They have a timing problem — and a coverage gap nobody warned them about.</p>
+    <div class="leaks">
+      <div class="leak rv"><div class="no">01</div><div class="ibox">✕</div><div><h3>No coverage at all</h3><p>1 in 3 families would feel financial hardship within a month if the primary earner was gone. The policy that fixes it costs less than a streaming bundle.</p></div></div>
+      <div class="leak rv"><div class="no">02</div><div class="ibox">▤</div><div><h3>Only what work gives you</h3><p>Group coverage is usually 1–2× salary and vanishes the day you leave the job. It was never enough, and it was never yours.</p></div></div>
+      <div class="leak rv"><div class="no">03</div><div class="ibox">?</div><div><h3>Guessing the amount</h3><p>Too little leaves a gap; too much wastes money. Our engine sizes it to your real mortgage, income and kids in seconds.</p></div></div>
+      <div class="leak rv"><div class="no">04</div><div class="ibox">◷</div><div><h3>Waiting too long</h3><p>Your rate is locked to the age you are today. Every year you wait, it costs more — and one diagnosis can close the door entirely.</p></div></div>
     </div>
-    <div class="consent" id="consentRow"><label><input type="checkbox" id="consent"><span>By continuing I agree a licensed advisor may contact me about my request, including by automated means; consent isn't a condition of purchase and I can reply STOP anytime. This is an estimate, not a decision. See Privacy Policy.</span></label></div>
-    <div class="ffoot"><button class="fback" id="back">← Back</button><button class="fnext mag" id="next">Continue →</button></div>
-  </div>
-</div></section>
-
-<!-- OBJECTIONS -->
-<section class="sec"><div class="wrap">
-  <div class="reveal"><span class="idx">04 / Honesty</span></div>
-  <h2 class="kinetic reveal" style="margin:16px 0 30px">Every reason you've put this off, <em>answered straight.</em></h2>
-  <div class="reveal">
-    <details><summary>"It's too expensive."</summary><div class="ans">Most people guess about three times the real number. For a healthy 35-year-old, term coverage often costs less than one dinner out a month — and we show you the real figure in minutes, no guessing.</div></details>
-    <details><summary>"I'll get to it later."</summary><div class="ans">The only things "later" changes are your age and your health, and both make it cost more — or take the option off the table. Today is the youngest and healthiest you'll ever be to lock this in.</div></details>
-    <details><summary>"Will they even pay the claim?"</summary><div class="ans">We only place you with carriers rated A or better by AM Best; the claim is a legal contract. And we tell you plainly how we're paid — the carrier pays us a commission already baked into your premium, so you pay the same either way.</div></details>
-    <details><summary>"I have coverage through work."</summary><div class="ans">Good start — but it's usually just 1-2x salary (most families need closer to 10x) and it vanishes the day you leave the job. A personal policy follows you between jobs and actually fits your family's real number.</div></details>
-    <details><summary>"I'm young and healthy — not yet."</summary><div class="ans">That's exactly why now. Healthy is when it's cheapest and when you actually qualify. Waiting doesn't keep you healthy; it just gambles with the one window when this is easy and affordable.</div></details>
-    <details><summary>"Honestly, it's morbid."</summary><div class="ans">Then don't think of it as being about dying — think of it as the last, biggest thing you do for the people you love. That's not morbid. That's love with a plan.</div></details>
-  </div>
-</div></section>
-
-<!-- OFFER -->
-<section class="sec"><div class="wrap">
-  <div class="reveal"><span class="idx">05 / What you get with us</span></div>
-  <h2 class="kinetic reveal" style="margin:16px 0">The whole thing, done for you — <em>and zero risk to look.</em></h2>
-  <div class="offer reveal">
-    <div>
-      <div class="oli"><span class="c">01</span><div><b>Your free Family Protection Blueprint.</b> A 15-minute, no-obligation plan showing exactly how much your family needs and what it costs — yours to keep either way.</div></div>
-      <div class="oli"><span class="c">02</span><div><b>We shop 40+ A-rated carriers for you.</b> One conversation instead of ten applications. We find your lowest honest rate and show our work.</div></div>
-      <div class="oli"><span class="c">03</span><div><b>No exam for most. Covered as fast as 24-48 hours.</b> No needles, no clinic, no month-long wait for most healthy applicants.</div></div>
-      <div class="oli"><span class="c">04</span><div><b>We handle the paperwork and the carrier.</b> You answer a few questions and e-sign from your couch. We do the chasing.</div></div>
-      <div class="oli"><span class="c">05</span><div><b>One licensed advisor, for life.</b> The same person answers at renewal — and walks your family through a claim if it ever comes.</div></div>
-    </div>
-    <aside class="ocard">
-      <span class="eyebrow" style="color:var(--red2)">Zero-risk guarantee</span>
-      <h3>The 30-day free look.</h3>
-      <p>Every policy comes with a legal money-back window. Put it in place, read every word, and if it's not exactly right, cancel inside 30 days for a full refund. You risk nothing to see your real numbers.</p>
-      <div class="rz"></div>
-      <p class="sm">And our promise: if we can't beat or fairly match what you already have, we'll tell you honestly and leave you better informed than we found you.</p>
-      <a href="#quote" class="cta cta-fill mag" style="margin-top:24px;justify-content:center"><span>Build my free blueprint</span><span class="a">→</span></a>
-    </aside>
-  </div>
-</div></section>
-
-<!-- FOUNDER -->
-<section class="bleed">
-  <div class="bg dark" data-par style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_052640_bae634fd-e188-4189-8d47-45581e491084.png')"></div>
-  <div class="bleed-copy" style="max-width:820px">
-    <div class="reveal"><span class="eyebrow">From the founder</span></div>
-    <p class="serif reveal" style="font-size:clamp(24px,3.2vw,40px);font-style:italic;line-height:1.25;margin:18px 0">"I didn't come from insurance. I came from job sites. Everything you build rests on one person being there in the morning — and I learned what happens to good families when that person suddenly isn't."</p>
-    <a href="#quote" class="cta cta-line mag reveal">Get an owner's review →</a>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="sec" id="faq"><div class="wrap" style="max-width:900px">
-  <div class="reveal"><span class="idx">06 / Answers</span></div>
-  <h2 class="kinetic reveal" style="margin:16px 0 30px">Straight answers, <em>no fine-print games.</em></h2>
-  <div class="reveal">
-    <details><summary>Is that instant estimate real?</summary><div class="ans">It's a genuine estimate from your answers and current carrier rate tables — not a teaser. It's not a final offer, because only the carrier sets your exact rate through underwriting, but most healthy applicants land close.</div></details>
-    <details><summary>Do I need a medical exam?</summary><div class="ans">Most healthy applicants qualify for no-exam underwriting and get a decision fast — sometimes same day. When a case needs full underwriting, it usually means we're chasing you a better rate class.</div></details>
-    <details><summary>I was declined online before. Am I done?</summary><div class="ans">No — honestly our favorite kind of case. Algorithms reject anything they can't neatly score. A human with 40+ carriers, including ones that specialize in specific health histories, very often finds coverage the algorithm couldn't.</div></details>
-    <details><summary>How do you get paid?</summary><div class="ans">The carrier pays us a commission when a policy is placed — already baked into the premium, so it doesn't change your price versus going direct. We're independent, so our only incentive is the right carrier for you.</div></details>
-    <details><summary>Are you an insurance company?</summary><div class="ans">No — we're an independent, licensed agency. Your policy is issued by a third-party carrier and all guarantees are backed solely by that carrier. We shop the market, fight through underwriting, and stay your advisor.</div></details>
+<div class="marq">
+  <div class="track">
+    <span>Term</span><span>·</span><span class="b">Whole Life</span><span>·</span><span>Final Expense</span><span>·</span><span>No-Exam</span><span>·</span><span class="b">Mortgage Protection</span><span>·</span><span>Guaranteed Issue</span><span>·</span><span>IUL</span><span>·</span>
+    <span>Term</span><span>·</span><span class="b">Whole Life</span><span>·</span><span>Final Expense</span><span>·</span><span>No-Exam</span><span>·</span><span class="b">Mortgage Protection</span><span>·</span><span>Guaranteed Issue</span><span>·</span><span>IUL</span><span>·</span>
   </div>
-</div></section>
+</div>
 
-<!-- FINAL -->
-<section class="sec final"><div class="wrap reveal">
-  <span class="eyebrow">A lifetime is a lot to leave to luck</span>
-  <h2 class="kinetic" style="margin:22px auto">Take five minutes now so they <em>never have to wonder.</em></h2>
-  <p class="lead" style="margin:0 auto 34px">Your rate is locked to the age you are today. See your estimate, free — and give the people you love a reason to sleep easier tonight.</p>
-  <a href="#quote" class="cta cta-fill mag" style="display:inline-flex"><span>See my estimate</span><span class="a">→</span></a>
-</div></section>
-
-<footer><div class="wrap">
-  <div class="fg">
-    <div><a class="logo" href="/" style="color:#fff">PERENNE<b>.</b></a><p style="margin-top:16px;max-width:40ch;color:var(--mut)">Perenne (Latin, <em>perennis</em>): everlasting, year after year. A modern, American-owned life insurance agency for people who want a real advisor and a straight answer.</p></div>
-    <div><h4>Coverage</h4><ul><li><a href="final-expense-insurance.html">Final Expense</a></li><li><a href="term-life-insurance.html">Term Life</a></li><li><a href="whole-life-insurance.html">Whole Life</a></li><li><a href="no-exam-life-insurance.html">No-Exam Life</a></li><li><a href="mortgage-protection-insurance.html">Mortgage Protection</a></li><li><a href="guaranteed-issue-life-insurance.html">Guaranteed Issue</a></li><li><a href="underwriting-engine.html">Instant Eligibility</a></li></ul></div>
-    <div><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li><li><a href="#">Accessibility</a></li><li><a href="#">Licensing &amp; Disclosures</a></li></ul></div>
+<section>
+  <div class="wrap center">
+    <div class="klbl mono rv">02 — Coverage</div>
+    <h2 class="big rv">Every life stage,<br><span class="b">one plan that fits.</span></h2>
+    <p class="lead rv d1">Independent means we work for you, not one carrier — and route you to the product that actually fits your life.</p>
+    <div class="cards" style="text-align:left">
+      <a class="pcard rv" href="term-life-insurance.html"><div class="ibox">◹</div><h3>Term Life</h3><p>The most protection per dollar, for the mortgage-and-kids years. From about $20/mo.</p><span class="go">Explore <span class="ar">→</span></span></a>
+      <a class="pcard rv d1" href="whole-life-insurance.html"><div class="ibox">◈</div><h3>Whole Life</h3><p>Coverage that never expires and builds guaranteed cash value while it protects.</p><span class="go">Explore <span class="ar">→</span></span></a>
+      <a class="pcard rv d2" href="final-expense-insurance.html"><div class="ibox">✚</div><h3>Final Expense</h3><p>A small whole-life policy that spares your family the funeral bill. Health questions only.</p><span class="go">Explore <span class="ar">→</span></span></a>
+      <a class="pcard rv" href="no-exam-life-insurance.html"><div class="ibox">⚡</div><h3>No-Exam Life</h3><p>Real coverage, no needles, often a same-day answer for healthy applicants.</p><span class="go">Explore <span class="ar">→</span></span></a>
+      <a class="pcard rv d1" href="mortgage-protection-insurance.html"><div class="ibox">⌂</div><h3>Mortgage Protection</h3><p>If something happens to you, they keep the house — and control the money.</p><span class="go">Explore <span class="ar">→</span></span></a>
+      <a class="pcard rv d2" href="guaranteed-issue-life-insurance.html"><div class="ibox">✓</div><h3>Guaranteed Issue</h3><p>Turned down elsewhere? Within the age band, you cannot be declined here.</p><span class="go">Explore <span class="ar">→</span></span></a>
+    </div>
   </div>
-  <div class="legal"><p><strong>[DRAFT — working name PERENNE; verify domain/trademark before use. Populate before launch.]</strong> Perenne Insurance Group LLC is an independent insurance agency, not an insurer. Insurance products are offered through licensed third-party carriers; all guarantees are subject to the claims-paying ability of the issuing carrier. Any figure shown here is an illustrative estimate based solely on information you provide, and is not an offer, quote, bind, or approval. Eligibility and final rates are determined by the issuing carrier through underwriting. State agency license #[L-number] · NPN [number] · Licensed in FL (resident), MD, VA, PA. Products offered only to residents of states where the agency is licensed. We are compensated by carrier commissions. This site is not a solicitation in any state where we are not licensed. © 2026 Perenne Insurance Group LLC.</p></div>
-</div></footer>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat rv"><b><i id="n1">40</i>+</b><span>A-rated carriers, one application</span></div>
+      <div class="stat rv d1"><b><i id="n2">24</i>–48h</b><span>Most no-exam decisions</span></div>
+      <div class="stat rv d2"><b>$<i id="n3">0</i></b><span>Our fee — carriers pay us, not you</span></div>
+      <div class="stat rv d3"><b><i id="n4">14</i>-day</b><span>Free look, full refund</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="band">
+      <div class="grid-bg"></div>
+      <h2>See your decision<br><span class="b">in about two minutes.</span></h2>
+      <p>No contact info needed to get your result. Instant eligibility, the plan that fits, an estimated monthly range, and the coverage your family actually needs.</p>
+      <a class="btn blue" href="underwriting-engine.html" style="position:relative">Run my instant eligibility <span class="ar">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="answers">
+  <div class="wrap">
+    <div class="klbl mono rv">03 — Answers</div>
+    <h2 class="big rv">Every hesitation,<br><span class="b">answered straight.</span></h2>
+    <div class="acc">
+      <details class="rv"><summary>Is that instant estimate real?</summary><div class="a">Yes — it's a genuine first-pass from your answers and current carrier rate logic, not a teaser that triples later. It isn't a final offer, because only the carrier sets your exact rate through underwriting, but most healthy applicants land close.</div></details>
+      <details class="rv"><summary>Do I need a medical exam?</summary><div class="a">Often no. Many carriers now approve healthy applicants through accelerated underwriting using data checks instead of bloodwork — frequently a same-day decision. If you have health conditions, we route you to the product most likely to approve you.</div></details>
+      <details class="rv"><summary>What if I've been turned down before?</summary><div class="a">You still have options. Simplified-issue and guaranteed-acceptance plans exist specifically for harder-to-insure families — within the eligible age band, guaranteed issue cannot decline you. Our engine routes you there automatically.</div></details>
+      <details class="rv"><summary>How do you get paid?</summary><div class="a">The carrier pays us a commission — you pay the same premium either way. We're an independent agency, so we shop 40+ carriers for your best fit instead of pushing one company's product.</div></details>
+      <details class="rv"><summary>Which states do you serve?</summary><div class="a">Florida, Maryland, Virginia and Pennsylvania. Products and rates vary by state and are confirmed by the issuing carrier.</div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="logo" href="/">PERENNE<b>.</b></a>
+        <p style="color:var(--slate);font-size:14.5px;margin-top:14px;max-width:36ch">Perenne (Latin, <em>perennis</em>): everlasting, year after year. A modern life insurance agency for families in Florida, Maryland, Virginia &amp; Pennsylvania.</p>
+      </div>
+      <div><h4>Coverage</h4><ul>
+        <li><a href="term-life-insurance.html">Term Life</a></li>
+        <li><a href="whole-life-insurance.html">Whole Life</a></li>
+        <li><a href="final-expense-insurance.html">Final Expense</a></li>
+        <li><a href="no-exam-life-insurance.html">No-Exam Life</a></li>
+        <li><a href="mortgage-protection-insurance.html">Mortgage Protection</a></li>
+        <li><a href="guaranteed-issue-life-insurance.html">Guaranteed Issue</a></li>
+      </ul></div>
+      <div><h4>Company</h4><ul>
+        <li><a href="underwriting-engine.html">Instant Eligibility</a></li>
+        <li><a href="#leaks">Why it matters</a></li>
+        <li><a href="#answers">Answers</a></li>
+        <li><a href="#">Licensing &amp; Disclosures</a></li>
+      </ul></div>
+    </div>
+    <p class="legal">[DRAFT — working name PERENNE; verify domain/trademark before use.] Perenne Insurance Group LLC is an independent insurance agency, not an insurer. Insurance products are offered through licensed third-party carriers; all guarantees are subject to the claims-paying ability of the issuing carrier. Any figure shown here is an illustrative estimate based solely on information you provide, and is not an offer, quote, bind, or approval. Eligibility and final rates are determined by the issuing carrier through underwriting. Licensed in FL (resident), MD, VA, PA. Products offered only to residents of states where the agency is licensed. We are compensated by carrier commissions. This site is not a solicitation in any state where we are not licensed. © 2026 Perenne Insurance Group LLC.</p>
+  </div>
+</footer>
 
 <script>
-const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches, fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
-if(fine&&!reduce){const c=document.getElementById('cur'),r=document.getElementById('curR');let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
- addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`});
- (function l(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;r.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(l)})();
- const h=()=>r.classList.add('hot'),o=()=>r.classList.remove('hot');document.querySelectorAll('a,button,.opt,summary,input,.mag').forEach(e=>{e.addEventListener('mouseenter',h);e.addEventListener('mouseleave',o)});}
-if(fine&&!reduce){document.querySelectorAll('.mag').forEach(el=>{el.addEventListener('mousemove',e=>{const b=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-b.left-b.width/2)*.2}px,${(e.clientY-b.top-b.height/2)*.3}px)`});el.addEventListener('mouseleave',()=>el.style.transform='')});}
-addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('small',scrollY>60));
-window.addEventListener('DOMContentLoaded',()=>{
- const frames=[...document.querySelectorAll('#frames .frame')],ageNum=document.getElementById('ageNum'),ages=frames.map(f=>+f.dataset.age);
- if(frames[0])frames[0].style.opacity=1;
- if(!window.gsap){document.querySelectorAll('.reveal').forEach(e=>e.style.opacity=1);return;}
- gsap.registerPlugin(ScrollTrigger); let lenis;
- if(!reduce&&window.Lenis){lenis=new Lenis({lerp:.085});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);}
- // letterbox open
- requestAnimationFrame(()=>document.body.classList.remove('bars'));
- // hero intro
- gsap.set('.hero .reveal',{y:40,opacity:0});
- gsap.to('.hero .reveal',{y:0,opacity:1,duration:1.1,stagger:.12,ease:'expo.out',delay:.25});
- // AGING full-screen scrub
- if(!reduce){
-   ScrollTrigger.create({trigger:'#hero',start:'top top',end:'+=2800',pin:true,scrub:.6,
-     onUpdate:s=>{const p=s.progress,seg=p*(frames.length-1),i=Math.min(frames.length-1,Math.floor(seg)),f=seg-i;
-       frames.forEach((fr,idx)=>fr.style.opacity=idx===i?1-f:idx===i+1?f:0);
-       if(i===frames.length-1)frames[i].style.opacity=1;
-       ageNum.textContent=Math.round(ages[i]+(ages[Math.min(i+1,ages.length-1)]-ages[i])*f);}});
- } else {frames.forEach((f,i)=>f.style.opacity=i===frames.length-1?1:0);ageNum.textContent=88;}
- // kinetic split headlines (fire on mount when in view, transform+opacity)
- document.querySelectorAll('.split').forEach(el=>{
-   if(window.SplitText){const s=new SplitText(el,{type:'words'});gsap.from(s.words,{yPercent:110,opacity:0,duration:1,stagger:.03,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 82%'}});}
- });
- // generic reveals
- document.querySelectorAll('.reveal:not(.hero .reveal)').forEach(el=>gsap.from(el,{y:50,autoAlpha:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 86%'}}));
- // parallax bleeds
- document.querySelectorAll('[data-par]').forEach(el=>gsap.fromTo(el,{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:el.closest('.bleed'),start:'top bottom',end:'bottom top',scrub:true}}));
- ScrollTrigger.refresh();
-});
-// FUNNEL
-const F={step:1,total:6,d:{age:35,cov:500000}};
-const body=document.getElementById('fBody'),prog=document.getElementById('prog'),sl=document.getElementById('stepLabel'),next=document.getElementById('next'),back=document.getElementById('back'),cr=document.getElementById('consentRow'),foot=document.querySelector('.ffoot');
-function show(s){document.querySelectorAll('.fstep').forEach(x=>x.classList.remove('active'));document.querySelector(`.fstep[data-step="${s}"]`).classList.add('active')}
-function render(){show(F.step);prog.style.width=(F.step/F.total*100)+'%';sl.textContent='Step '+F.step+' of '+F.total;back.style.visibility=F.step>1?'visible':'hidden';next.textContent=F.step===F.total?'See my estimate →':'Continue →';cr.style.display=F.step===F.total?'block':'none'}
-body.addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;o.closest('.fstep').querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');F.d['s'+F.step]=o.dataset.v});
-const age=document.getElementById('age'),ageV=document.getElementById('ageV');age.addEventListener('input',()=>{ageV.textContent=age.value;F.d.age=+age.value});
-const cov=document.getElementById('cov'),covV=document.getElementById('covV');cov.addEventListener('input',()=>{covV.textContent='$'+(+cov.value).toLocaleString();F.d.cov=+cov.value});
-back.onclick=()=>{if(F.step>1){F.step--;render()}};
-function shake(el){if(window.gsap)gsap.fromTo(el,{x:-6},{x:0,duration:.4,ease:'elastic.out(1,.3)'})}
-next.onclick=()=>{if([1,2,4,5].includes(F.step)&&!F.d['s'+F.step]){shake(next);return}if(F.step<F.total){F.step++;render();return}
- const fn=document.getElementById('fname').value.trim(),em=document.getElementById('email').value.trim();if(!fn||!em){shake(next);return}if(!document.getElementById('consent').checked){shake(cr);return}F.d.name=fn;F.d.email=em;analyze()};
-function analyze(){foot.style.display='none';cr.style.display='none';show('analyzing');prog.style.width='100%';sl.textContent='Working…';
- const L=['Scanning 40+ A-rated carriers…','Matching your health profile…','Checking no-exam eligibility…','Finding your best rate class…','Almost there…'];const el=document.getElementById('aLine');let i=0;const iv=setInterval(()=>{i++;if(i<L.length)el.textContent=L[i]},560);setTimeout(()=>{clearInterval(iv);result()},3000)}
-function est(){const a=F.d.age||35,c=F.d.cov||500000,per=c/100000;let b=2.2+Math.pow(Math.max(0,a-25),1.55)*.14;const h={'Excellent':.85,'Good':1,'Fair':1.4,'Declined before':1.9}[F.d.s4]||1;const t=F.d.s5==='Yes'?2.3:1;const g=F.d.s2==='Female'?.88:1;return Math.max(9,Math.round(b*per*h*t*g))}
-function result(){const p=est();document.getElementById('pd').textContent='An early estimate for $'+(F.d.cov||500000).toLocaleString()+' of coverage at age '+(F.d.age||35)+'. A licensed advisor confirms your exact rate — often the same day.';show('result');sl.textContent='Your estimate';const o=document.getElementById('priceOut');if(window.gsap){const s={v:Math.max(1,p-18)};gsap.to(s,{v:p,duration:1.1,ease:'power2.out',onUpdate:()=>o.textContent=Math.round(s.v)})}else o.textContent=p}
-document.getElementById('bookBtn').addEventListener('click',e=>{e.preventDefault();alert('Draft demo — at launch this books your advisor call and emails the estimate. Wire to your CRM / calendar before go-live.')});
-render();
+/* ---- custom cursor ---- */
+const cur=document.getElementById('cur'),cdot=document.getElementById('cdot');
+let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cdot.style.left=mx+'px';cdot.style.top=my+'px';});
+(function loop(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,summary,.pcard,details').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('big'));el.addEventListener('mouseleave',()=>cur.classList.remove('big'));});
+/* ---- reveal ---- */
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.14});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* ---- count ups ---- */
+function countUp(el,to,suf,dur){if(!el)return;let st=null;const from=0;function step(t){if(!st)st=t;const p=Math.min((t-st)/dur,1);el.textContent=Math.round(from+(to-from)*(1-Math.pow(1-p,3)))+(suf||'');if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
+const statObs=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){countUp(document.getElementById('n1'),40,'',1100);countUp(document.getElementById('n2'),24,'',1100);countUp(document.getElementById('n3'),0,'',600);countUp(document.getElementById('n4'),14,'',1100);statObs.disconnect();}}),{threshold:.5});
+const sEl=document.querySelector('.stats');if(sEl)statObs.observe(sEl);
+/* ---- animated lifeline ---- */
+(function(){
+ const W=520,H=230,pad=12;
+ // life curve: rises through building years, plateaus, gentle late decline — sampled points
+ const ptsY=[0.72,0.5,0.32,0.22,0.2,0.26,0.4,0.6]; // 30..90 normalized (0 top)
+ const n=ptsY.length;
+ const X=i=>pad+(W-2*pad)*(i/(n-1));
+ const Y=v=>pad+(H-2*pad)*v;
+ // smooth path
+ function smooth(){let d=`M ${X(0)} ${Y(ptsY[0])}`;for(let i=0;i<n-1;i++){const x0=X(i),y0=Y(ptsY[i]),x1=X(i+1),y1=Y(ptsY[i+1]);const cx=(x0+x1)/2;d+=` C ${cx} ${y0}, ${cx} ${y1}, ${x1} ${y1}`;}return d;}
+ const path=document.getElementById('lifePath'),area=document.getElementById('lifeArea'),dot=document.getElementById('lifeDot');
+ const gg=document.getElementById('vgrid');
+ for(let i=0;i<=4;i++){const x=pad+(W-2*pad)*(i/4);gg.innerHTML+=`<line x1="${x}" y1="${pad}" x2="${x}" y2="${H-pad}"/>`;}
+ const d=smooth();path.setAttribute('d',d);area.setAttribute('d',d+` L ${X(n-1)} ${H-pad} L ${X(0)} ${H-pad} Z`);
+ const len=path.getTotalLength();path.style.strokeDasharray=len;path.style.strokeDashoffset=len;
+ const ageEl=document.getElementById('vage'),stageEl=document.getElementById('vstage'),covEl=document.getElementById('vcov');
+ const stages=[[30,'Building years','$500,000'],[45,'Peak protection','$750,000'],[60,'Legacy planning','$400,000'],[75,'Final expense','$25,000'],[90,'Passed on','Paid out']];
+ let started=false;
+ function animate(){
+  started=true;const dur=3200,t0=performance.now();
+  function fr(t){let p=Math.min((t-t0)/dur,1);
+   path.style.strokeDashoffset=len*(1-p);
+   const pt=path.getPointAtLength(len*p);dot.setAttribute('cx',pt.x);dot.setAttribute('cy',pt.y);
+   const age=Math.round(30+60*p);ageEl.textContent=age;
+   const s=stages.reduce((a,c)=>age>=c[0]?c:a,stages[0]);stageEl.textContent=s[1];covEl.textContent=s[2];
+   if(p<1)requestAnimationFrame(fr);else setTimeout(()=>{path.style.strokeDashoffset=len;setTimeout(animate,700);},1400);
+  }requestAnimationFrame(fr);
+ }
+ const vObs=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting&&!started){animate();}}),{threshold:.3});
+ vObs.observe(document.getElementById('lifeSvg'));
+})();
 </script>
 </body>
 </html>
