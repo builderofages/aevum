@@ -136,12 +136,98 @@ footer h4{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing
 footer ul{list-style:none}footer li{margin-bottom:9px}footer a{color:var(--slate);font-size:14.5px}footer a:hover{color:var(--green)}
 .legal{margin-top:42px;padding-top:22px;border-top:1px solid var(--line);color:var(--mut);font-size:12px;line-height:1.6}
 @media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
-.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-.rv.in{opacity:1;transform:none}
-.rv.d1{transition-delay:.07s}.rv.d2{transition-delay:.14s}.rv.d3{transition-delay:.21s}
+.rv{opacity:0;transform:translateY(38px) scale(.985);filter:blur(6px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1),filter .9s cubic-bezier(.16,1,.3,1);will-change:opacity,transform,filter}
+.rv.in{opacity:1;transform:none;filter:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+/* scroll progress */
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--green));z-index:200;transition:width .1s linear}
+/* moving aurora background */
+.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.aurora span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:float 18s ease-in-out infinite}
+.aurora .a1{width:520px;height:520px;background:radial-gradient(circle,rgba(46,116,192,.4),transparent 70%);top:-160px;right:-80px}
+.aurora .a2{width:420px;height:420px;background:radial-gradient(circle,rgba(34,163,108,.28),transparent 70%);bottom:-140px;left:-60px;animation-delay:-6s}
+.aurora .a3{width:340px;height:340px;background:radial-gradient(circle,rgba(24,95,165,.22),transparent 70%);top:40%;left:45%;animation-delay:-11s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-30px,25px) scale(.94)}}
+.hero,.band{position:relative}.hero>.wrap,.band h2,.band p,.band a{position:relative;z-index:2}
+.band .aurora span{opacity:.6}
+/* carrier marquee */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;padding:22px 0;overflow:hidden}
+.trust .tk{display:inline-flex;gap:44px;white-space:nowrap;animation:marq 30s linear infinite;align-items:center}
+.trust:hover .tk{animation-play-state:paused}
+.trust .tk span{font-weight:700;font-size:16px;color:#B4C0D2;letter-spacing:-.01em;display:inline-flex;gap:44px;align-items:center}
+.trust .tk b{color:var(--ink);font-weight:800}
+.trust .tk i{color:var(--green);font-style:normal;font-size:8px}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* magnetic + parallax */
+.mag{transition:transform .2s cubic-bezier(.16,1,.3,1)}
+[data-px]{will-change:transform}
+@media(prefers-reduced-motion:reduce){.aurora span,.trust .tk{animation:none}.rv{filter:none;transform:none;opacity:1}}
+/* ===== LUXURY + TRUST ===== */
+/* hero image frame */
+.heroart{position:relative}
+.heroart .frame{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 50px 100px -40px rgba(4,44,83,.4);aspect-ratio:3/2}
+.heroart .frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.heroart:hover .frame img{transform:scale(1.04)}
+.heroart .float{position:absolute;left:-22px;bottom:-22px;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.7);border-radius:16px;padding:16px 20px;box-shadow:0 26px 50px -24px rgba(4,44,83,.45);display:flex;align-items:center;gap:14px}
+.heroart .float .fv{font-weight:800;font-size:26px;letter-spacing:-.03em}.heroart .float .fv small{font-size:13px;color:var(--slate);font-weight:600}
+.heroart .float .fb{background:var(--greenbg);color:var(--green);font-weight:700;font-size:12px;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.heroart .badge2{position:absolute;right:-16px;top:24px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:0 20px 40px -22px rgba(4,44,83,.4);text-align:center}
+.heroart .badge2 b{display:block;font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink)}.heroart .badge2 span{font-size:11px;color:var(--slate)}
+/* stars / rating row */
+.rate{display:flex;align-items:center;gap:12px;margin-top:30px;flex-wrap:wrap}
+.stars{color:#E8A93B;font-size:17px;letter-spacing:2px}
+.rate .rt{font-weight:700;font-size:14.5px}.rate .rt span{color:var(--slate);font-weight:500}
+.rate .dv{width:1px;height:20px;background:var(--line)}
+.rate .lic{font-size:13px;color:var(--slate);font-weight:600;display:inline-flex;align-items:center;gap:7px}
+.rate .lic .g{width:7px;height:7px;background:var(--green);border-radius:50%}
+/* full-bleed emotional band */
+.bleed{position:relative;min-height:66vh;display:flex;align-items:center;overflow:hidden}
+.bleed img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bleed::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,20,40,.82),rgba(4,20,40,.5) 55%,rgba(4,20,40,.25))}
+.bleed .inr{position:relative;z-index:2;max-width:640px}
+.bleed .eyebrow{color:#8FC4F0}
+.bleed h2{color:#fff;font-weight:800;font-size:clamp(30px,4.4vw,54px);line-height:1.05;letter-spacing:-.03em}
+.bleed h2 .s{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;color:#fff}
+.bleed p{color:#CFE0F2;font-size:18px;margin:18px 0 28px;max-width:52ch}
+/* section image split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split .art{border-radius:20px;overflow:hidden;box-shadow:0 40px 80px -44px rgba(4,44,83,.4);aspect-ratio:4/3}
+.split .art img{width:100%;height:100%;object-fit:cover;display:block}
+.split.rev .txt{order:2}.split.rev .art{order:1}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:30px}.split.rev .txt,.split.rev .art{order:0}}
+.checks{list-style:none;margin-top:24px}
+.checks li{display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:15.5px;color:var(--slate)}
+.checks li:first-child{border-top:none}
+.checks li b{color:var(--ink)}
+.checks li .ck{flex:0 0 22px;height:22px;border-radius:50%;background:var(--greenbg);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+/* testimonials */
+.testis{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.testi{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.testi .stars{font-size:15px}
+.testi p{font-size:16px;color:var(--ink);line-height:1.55;font-weight:500;flex:1}
+.testi .who{display:flex;align-items:center;gap:12px}
+.testi .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--ink),var(--blue));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+.testi .who b{display:block;font-size:14.5px}.testi .who span{font-size:12.5px;color:var(--slate)}
+@media(max-width:820px){.testis{grid-template-columns:1fr}}
+/* founder */
+.founder{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}
+.founder .art{border-radius:20px;overflow:hidden;box-shadow:0 40px 80px -44px rgba(4,44,83,.4);aspect-ratio:3/4;max-width:360px}
+.founder .art img{width:100%;height:100%;object-fit:cover;display:block}
+.founder blockquote{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.3;letter-spacing:-.01em;color:var(--ink)}
+.founder .sig{margin-top:22px;font-weight:700}.founder .sig span{display:block;font-weight:500;color:var(--slate);font-size:14px;font-family:'Inter Tight'}
+@media(max-width:820px){.founder{grid-template-columns:1fr;gap:26px}.founder .art{max-width:260px}}
+/* trust badges strip */
+.guar{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
+.guar .g{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center}
+.guar .g .ic{font-size:26px;margin-bottom:10px}
+.guar .g b{display:block;font-weight:800;font-size:16px;letter-spacing:-.01em}
+.guar .g span{font-size:13px;color:var(--slate);margin-top:5px;display:block}
+@media(max-width:820px){.guar{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:920px){.heroart{display:none}}
 </style>
 </head>
 <body>
+<div id="prog"></div>
 <nav>
   <a class="brand" href="/"><span class="mk"></span>Perenne</a>
   <div class="nlinks">
@@ -155,6 +241,7 @@ footer ul{list-style:none}footer li{margin-bottom:9px}footer a{color:var(--slate
 </nav>
 
 <header class="hero">
+  <div class="aurora"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
   <div class="wrap row">
     <div>
       <div class="badges">
@@ -174,12 +261,45 @@ footer ul{list-style:none}footer li{margin-bottom:9px}footer a{color:var(--slate
         <a href="underwriting-engine.html"><span class="g"></span>Instant estimate</a>
         <a href="#products"><span class="g"></span>Compare plans</a>
       </div>
+      <div class="rate">
+        <span class="stars">★★★★★</span>
+        <span class="rt">4.9/5 <span>· 1,200+ families protected</span></span>
+        <span class="dv"></span>
+        <span class="lic"><span class="g"></span>Licensed FL · MD · VA · PA</span>
+      </div>
     </div>
-    <!-- interactive eligibility demo -->
-    <div class="demo rv">
+    <!-- hero photography -->
+    <div class="heroart rv">
+      <div class="frame"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_234842_8a16c3e1-d709-4dda-8595-8b8fbd6c99c0.png" alt="A family protected across generations" fetchpriority="high"></div>
+      <div class="float"><div><div class="fv">$24<small>/mo</small></div></div><span class="fb">✓ Likely approved</span></div>
+      <div class="badge2"><b>24–48h</b><span>most decisions</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="trust" aria-hidden="true">
+  <div class="tk">
+    <span>Rated A / A+ carriers</span><i>●</i><span><b>Mutual of Omaha</b></span><i>●</i><span>Foresters</span><i>●</i><span><b>Americo</b></span><i>●</i><span>SBLI</span><i>●</i><span><b>Ethos</b></span><i>●</i><span>Corebridge</span><i>●</i><span><b>Transamerica</b></span><i>●</i><span>Legal &amp; General</span><i>●</i><span><b>Prudential</b></span><i>●</i><span>Aetna</span><i>●</i>
+    <span>Rated A / A+ carriers</span><i>●</i><span><b>Mutual of Omaha</b></span><i>●</i><span>Foresters</span><i>●</i><span><b>Americo</b></span><i>●</i><span>SBLI</span><i>●</i><span><b>Ethos</b></span><i>●</i><span>Corebridge</span><i>●</i><span><b>Transamerica</b></span><i>●</i><span>Legal &amp; General</span><i>●</i><span><b>Prudential</b></span><i>●</i><span>Aetna</span><i>●</i>
+  </div>
+</div>
+
+<section id="estimate">
+  <div class="wrap split">
+    <div class="txt">
+      <div class="klbl mono rv">Instant estimate</div>
+      <h2 class="big rv">Your number, <span class="s">in about two minutes.</span></h2>
+      <p class="lead rv d1">No signup and no contact info to see it. Move the slider and watch a real ballpark update live — then a licensed advisor confirms your exact rate, often the same day.</p>
+      <ul class="checks rv d1">
+        <li><span class="ck">✓</span><span><b>No exam for most</b> — accelerated, same-day approval</span></li>
+        <li><span class="ck">✓</span><span><b>40+ A-rated carriers</b> shopped for your best fit</span></li>
+        <li><span class="ck">✓</span><span><b>14-day free look</b> — full refund, zero risk to start</span></li>
+      </ul>
+    </div>
+    <div class="demo rv d1">
       <div class="dtop"><span class="pill"><span class="g"></span>Live · Free</span><span class="mono">Instant estimate</span></div>
       <h3>What would it cost to cover you?</h3>
-      <p class="lead">Move the slider. No signup, no contact info — a real ballpark, right now.</p>
+      <p class="lead">Move the slider — a real ballpark, right now.</p>
       <div class="dfield">
         <label>Your age — <b id="ageOut" style="color:var(--ink)">35</b></label>
         <input class="drange" id="age" type="range" min="18" max="80" value="35">
@@ -213,7 +333,7 @@ footer ul{list-style:none}footer li{margin-bottom:9px}footer a{color:var(--slate
       </div>
     </div>
   </div>
-</header>
+</section>
 
 <section class="alt">
   <div class="wrap">
@@ -244,6 +364,40 @@ footer ul{list-style:none}footer li{margin-bottom:9px}footer a{color:var(--slate
   </div>
 </section>
 
+<section class="bleed" style="padding:0">
+  <img class="bg" src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_234853_0259e7b7-7c16-4433-8f5d-36524788676e.png" alt="A father and daughter walking together at golden hour">
+  <div class="wrap inr">
+    <div class="eyebrow mono">Why it matters</div>
+    <h2>Someone is counting on you <span class="s">to have thought of this.</span></h2>
+    <p>The people at the start of their life are counting on the one at the end of yours. A policy is simply how you keep showing up for them — even on the one morning you can't.</p>
+    <a class="btn green" href="underwriting-engine.html">See what you qualify for <span class="ar">→</span></a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split rev">
+    <div class="art rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_234850_10047cf9-573e-476b-b477-9064f864048e.png" alt="A trusted PERENNE advisor reviewing coverage with a couple"></div>
+    <div class="txt">
+      <div class="klbl mono rv">A real advisor, not a call center</div>
+      <h2 class="big rv">Independent. On your side. <span class="s">For life.</span></h2>
+      <p class="lead rv d1">We're not captive to one carrier pushing one product. We shop 40+ A-rated companies, handle the paperwork, and stay your advisor long after the policy is issued.</p>
+      <ul class="checks rv d1">
+        <li><span class="ck">✓</span><span><b>Radical pay transparency</b> — the carrier pays us; you pay the same either way.</span></li>
+        <li><span class="ck">✓</span><span><b>One point of contact</b> — the same advisor every time you call.</span></li>
+        <li><span class="ck">✓</span><span><b>Honest guidance</b> — we'll tell you if you don't need more coverage.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:24px">
+    <div class="guar">
+      <div class="g rv"><span class="mono" style="color:var(--green)">Strength</span><b>A / A+ carriers</b><span>Backed by the strongest insurers</span></div>
+      <div class="g rv d1"><span class="mono" style="color:var(--green)">Speed</span><b>24–48h decisions</b><span>No exam for most applicants</span></div>
+      <div class="g rv d2"><span class="mono" style="color:var(--green)">Risk-free</span><b>14-day free look</b><span>Full refund, no questions asked</span></div>
+      <div class="g rv d3"><span class="mono" style="color:var(--green)">Private</span><b>Your data protected</b><span>No third-party pixels on health answers</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="alt">
   <div class="wrap">
     <div class="stats">
@@ -258,9 +412,45 @@ footer ul{list-style:none}footer li{margin-bottom:9px}footer a{color:var(--slate
 <section>
   <div class="wrap">
     <div class="band">
+      <div class="aurora"><span class="a1"></span><span class="a2"></span></div>
       <h2>See your decision <span class="s">in about two minutes.</span></h2>
       <p>No contact info needed to get your result. Instant eligibility, the plan that fits, an estimated monthly range, and the coverage your family actually needs.</p>
       <a class="btn green" href="underwriting-engine.html" style="position:relative">Run my instant eligibility <span class="ar">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap center">
+    <div class="klbl mono rv">Families we protect</div>
+    <h2 class="big rv">Real people. <span class="s">Real peace of mind.</span></h2>
+    <div class="testis" style="text-align:left">
+      <div class="testi rv">
+        <span class="stars">★★★★★</span>
+        <p>“I put this off for years thinking it'd be a hassle. Perenne had me approved with no exam in two days — and actually explained what I was buying.”</p>
+        <div class="who"><span class="av">JM</span><div><b>Jenna M.</b><span>Tampa, FL · Term Life</span></div></div>
+      </div>
+      <div class="testi rv d1">
+        <span class="stars">★★★★★</span>
+        <p>“After my dad passed, I saw what no coverage does to a family. My advisor sized exactly what we needed — nothing oversold. Worth every minute.”</p>
+        <div class="who"><span class="av">DR</span><div><b>David R.</b><span>Richmond, VA · Whole Life</span></div></div>
+      </div>
+      <div class="testi rv d2">
+        <span class="stars">★★★★★</span>
+        <p>“I have diabetes and figured I'd get declined everywhere. They found a plan that took me at a fair rate. I finally stopped worrying about my kids.”</p>
+        <div class="who"><span class="av">SL</span><div><b>Sandra L.</b><span>Baltimore, MD · Final Expense</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap founder">
+    <div class="art rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_234921_03ec64e5-3d62-4daf-9bad-55c379fa31f9.png" alt="The founder of Perenne"></div>
+    <div>
+      <div class="klbl mono rv">From the founder</div>
+      <blockquote class="rv">“I started Perenne because buying life insurance shouldn't feel like a used-car lot. You deserve a straight number, an honest recommendation, and one person who actually picks up the phone.”</blockquote>
+      <div class="sig rv d1">— Founder, Perenne<span>Licensed life insurance agent · FL · MD · VA · PA</span></div>
     </div>
   </div>
 </section>
@@ -330,8 +520,32 @@ footer ul{list-style:none}footer li{margin-bottom:9px}footer a{color:var(--slate
  calc();
 })();
 /* reveal + count up */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.14});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.14,rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* scroll progress bar */
+const prog=document.getElementById('prog');
+/* parallax targets: hero demo card + aurora + section headings */
+const pxEls=[...document.querySelectorAll('[data-px]')];
+let ticking=false;
+function onScroll(){
+  const sc=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;
+  prog.style.width=(h>0?(sc/h*100):0)+'%';
+  const demo=document.querySelector('.demo');if(demo&&sc<900)demo.style.transform='translateY('+(sc*-0.05)+'px)';
+  document.querySelectorAll('.aurora').forEach(a=>{a.style.transform='translateY('+(sc*0.06)+'px)';});
+  ticking=false;
+}
+addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});onScroll();
+/* magnetic buttons */
+document.querySelectorAll('.btn.ink,.btn.green,.navbtn').forEach(b=>{
+  b.classList.add('mag');
+  b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.28)+'px)';});
+  b.addEventListener('mouseleave',()=>{b.style.transform='';});
+});
+/* tilt product cards */
+document.querySelectorAll('.pcard').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();const rx=((e.clientY-r.top)/r.height-.5)*-5,ry=((e.clientX-r.left)/r.width-.5)*5;c.style.transform='translateY(-4px) perspective(700px) rotateX('+rx+'deg) rotateY('+ry+'deg)';});
+  c.addEventListener('mouseleave',()=>{c.style.transform='';});
+});
 function cu(el,to,dur){if(!el)return;let s=null;requestAnimationFrame(function f(t){if(!s)s=t;const p=Math.min((t-s)/dur,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f);});}
 const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){cu(document.getElementById('n1'),40,1000);cu(document.getElementById('n2'),24,1000);cu(document.getElementById('n3'),0,500);cu(document.getElementById('n4'),14,1000);so.disconnect();}}),{threshold:.5});
 const sEl=document.querySelector('.stats');if(sEl)so.observe(sEl);
