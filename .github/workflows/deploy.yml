@@ -1,0 +1,29 @@
+name: Validate & Archive
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          blacklist: docs
+
+      - name: Check for compliance red flags
+        run: |
+          ! grep -riE 'guaranteed approval|guaranteed acceptance|financial planner|investment plan|savings plan' index.html
+          ! grep -riE 'connect\.facebook\.net|tiktok\.com/i18n|snap\.licdn|googletagmanager' index.html
+
+      - name: Archive site snapshot (ad-file requirement)
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-snapshot-${{ github.sha }}
+          path: index.html
+          retention-days: 90
