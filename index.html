@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aevum — Life insurance with a real advisor. Decided in minutes, not months.</title>
+<meta name="description" content="Aevum is an independent life insurance agency. Real quotes, one named licensed advisor, no spam calls, no bait pricing. Coverage decisions as fast as same day for most applicants.">
+<!-- DRAFT SITE — DO NOT PUBLISH until agency licensing is complete. See docs/compliance-checklist.md -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12182B; --ink-2:#1C2440; --paper:#FAF8F4; --oat:#F1EDE4; --stone:#8B8578;
+  --brass:#B08D46; --brass-deep:#8F7134; --text:#2A2E3D; --line:#E4DFD3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{font-family:"Instrument Sans",system-ui,sans-serif;color:var(--text);background:var(--paper);line-height:1.6;font-size:17px}
+h1,h2,h3,.serif{font-family:"Fraunces",Georgia,serif;color:var(--ink);letter-spacing:-0.02em;text-wrap:balance;font-weight:500}
+img{max-width:100%;display:block}
+a{color:var(--brass-deep)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;padding:15px 30px;border-radius:4px;font-weight:600;font-size:16px;border:1px solid var(--ink);transition:transform .2s ease,background .2s ease}
+.btn:hover{background:var(--ink-2)}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.btn--ghost{background:transparent;color:var(--ink)}
+.rule{width:56px;height:2px;background:var(--brass);margin:0 0 22px}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-deep);font-weight:600;margin-bottom:14px}
+/* Nav */
+nav{position:sticky;top:0;background:rgba(250,248,244,.94);border-bottom:1px solid var(--line);z-index:10}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1120px;margin:0 auto}
+.logo{font-family:"Fraunces",serif;font-size:26px;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.logo span{color:var(--brass)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500}
+.nav-links a:hover{color:var(--brass-deep)}
+@media(max-width:760px){.nav-links a:not(.btn){display:none}}
+/* Hero */
+.hero{background:var(--ink);color:var(--paper);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:88px 24px 96px;max-width:1120px;margin:0 auto}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;padding:56px 24px}}
+.hero h1{color:var(--paper);font-size:clamp(34px,4.6vw,56px);line-height:1.12;margin-bottom:22px}
+.hero h1 em{font-style:italic;color:var(--brass)}
+.hero p.sub{font-size:19px;color:#C9CBD6;max-width:52ch;margin-bottom:30px}
+.hero .btn{background:var(--brass);border-color:var(--brass);color:var(--ink);font-size:17px;padding:17px 34px}
+.hero .btn:hover{background:#C29C52}
+.hero-note{font-size:13px;color:#8A8FA3;margin-top:14px;max-width:52ch}
+.hero-img{border-radius:6px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+/* Trust bar */
+.trust{border-bottom:1px solid var(--line);background:var(--oat)}
+.trust-in{display:flex;flex-wrap:wrap;gap:8px 48px;justify-content:center;padding:22px 24px;max-width:1120px;margin:0 auto;font-size:14.5px;color:var(--ink)}
+.trust-in b{color:var(--brass-deep)}
+/* Sections */
+section{padding:88px 0}
+@media(max-width:760px){section{padding:56px 0}}
+.split{display:grid;grid-template-columns:5fr 4fr;gap:64px;align-items:center}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:36px}}
+h2{font-size:clamp(28px,3.4vw,40px);line-height:1.15;margin-bottom:18px}
+.lead{font-size:18.5px;max-width:60ch}
+/* Steps */
+.steps{background:var(--paper)}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px;counter-reset:step}
+@media(max-width:760px){.steps-grid{grid-template-columns:1fr}}
+.step{border-top:2px solid var(--line);padding-top:26px;position:relative}
+.step::before{counter-increment:step;content:"0" counter(step);font-family:"Fraunces",serif;font-size:44px;color:var(--brass);display:block;margin-bottom:10px;font-weight:400}
+.step h3{font-size:21px;margin-bottom:8px}
+.step p{font-size:16px;color:#4A4E5C}
+/* Difference table */
+.diff{background:var(--ink);color:var(--paper)}
+.diff h2{color:var(--paper)}
+.diff .lead{color:#C9CBD6}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:44px;border:1px solid #2A3150;border-radius:6px;overflow:hidden}
+@media(max-width:760px){.diff-grid{grid-template-columns:1fr}}
+.diff-col{padding:38px}
+.diff-col.them{background:#161D35;color:#9BA0B4}
+.diff-col.us{background:#1C2440}
+.diff-col h3{font-size:15px;letter-spacing:.12em;text-transform:uppercase;font-family:"Instrument Sans",sans-serif;font-weight:600;margin-bottom:22px}
+.diff-col.them h3{color:#6E7488}
+.diff-col.us h3{color:var(--brass)}
+.diff-col ul{list-style:none}
+.diff-col li{padding:11px 0;border-bottom:1px solid #262E4E;font-size:16px}
+.diff-col.us li{color:var(--paper)}
+.diff-col li:last-child{border:none}
+/* Promise / offer */
+.offer-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+@media(max-width:860px){.offer-cards{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:34px 30px}
+.card h3{font-size:22px;margin-bottom:12px}
+.card p{font-size:16px;color:#4A4E5C}
+.card .tag{display:inline-block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-deep);font-weight:600;margin-bottom:14px}
+/* Business */
+.biz{background:var(--oat)}
+.biz-img{border-radius:6px;overflow:hidden}
+/* FAQ */
+details{border-bottom:1px solid var(--line);padding:20px 0}
+details summary{font-family:"Fraunces",serif;font-size:20px;color:var(--ink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details summary::after{content:"+";color:var(--brass);font-size:26px;font-family:"Instrument Sans",sans-serif}
+details[open] summary::after{content:"–"}
+details p{padding-top:12px;max-width:68ch;color:#4A4E5C}
+/* CTA band */
+.cta-band{background:var(--ink);color:var(--paper);text-align:center}
+.cta-band h2{color:var(--paper);max-width:22ch;margin:0 auto 16px}
+.cta-band p{color:#C9CBD6;max-width:52ch;margin:0 auto 30px}
+.cta-band .btn{background:var(--brass);border-color:var(--brass);color:var(--ink);font-size:17px;padding:17px 34px}
+/* Footer */
+footer{background:var(--paper);border-top:1px solid var(--line);padding:52px 0;font-size:13.5px;color:#6B6F7D}
+footer .logo{font-size:22px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+footer h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+footer ul{list-style:none}
+footer li{margin-bottom:8px}
+footer a{color:#6B6F7D;text-decoration:none}
+footer a:hover{color:var(--brass-deep)}
+.legal{border-top:1px solid var(--line);padding-top:26px;line-height:1.7}
+.skip{position:absolute;left:-9999px;top:0;background:var(--brass);color:var(--ink);padding:10px 16px;z-index:100}
+.skip:focus{left:12px;top:12px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav aria-label="Main">
+  <div class="nav-in">
+    <a class="logo" href="/">aevum<span>.</span></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#promise">Our promise</a>
+      <a href="#business">Business owners</a>
+      <a href="#faq">Questions</a>
+      <a class="btn" href="#quote" style="padding:11px 22px;font-size:15px">See my rate</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow" style="color:var(--brass)">Aevum · Independent Life Insurance Advisors</p>
+      <h1>Protect your family in about 15 minutes. <em>Keep a real advisor for life.</em></h1>
+      <p class="sub">No medical exam for most applicants. No call-center roulette. No teaser quote that triples later. One licensed advisor, real prices from A-rated carriers, and a decision as fast as same day.</p>
+      <a class="btn" href="#quote">See my rate — takes 2 minutes</a>
+      <p class="hero-note">Free quote, no obligation, and we don't sell your information. Coverage decisions are made by the insurance carrier; most healthy applicants qualify for no-exam underwriting. Rates vary by age, health, and state.</p>
+    </div>
+    <div class="hero-img">
+      <!-- DRAFT: hotlinked from Higgsfield CDN. Before launch: download from your Higgsfield media library, optimize to WebP, self-host in /assets. -->
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_024347_b0ada27c-1e31-458a-9ffd-0d7042bf075d_min.webp" alt="A father laughing with his young daughter on the front porch of their home at golden hour" width="2048" height="1152">
+    </div>
+  </div>
+</header>
+
+<!-- TRUST BAR -->
+<div class="trust" role="complementary" aria-label="Trust indicators">
+  <div class="trust-in">
+    <span><b>Independent</b> — we work for you, not a carrier</span>
+    <span>We quote only carriers rated <b>A− or better</b> by AM Best</span>
+    <span>Licensed in <b>FL · MD · VA · PA</b></span>
+    <span><b>One named advisor</b>, never a call center</span>
+  </div>
+</div>
+
+<!-- PROBLEM / DIFFERENCE -->
+<section class="diff" id="difference">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>The industry made this miserable. It doesn't have to be.</h2>
+    <p class="lead">Online funnels give you speed with no advice — then blast your phone from ten numbers. Old-school agents give you advice at the pace of paperwork. We built Aevum to be the third option.</p>
+    <div class="diff-grid">
+      <div class="diff-col them">
+        <h3>Everyone else</h3>
+        <ul>
+          <li>Teaser quote, real price after underwriting</li>
+          <li>Your number sold to a dialing floor</li>
+          <li>Algorithm declines you — no explanation, no plan B</li>
+          <li>Nobody calls once the policy is sold</li>
+          <li>One carrier's products, whatever the fit</li>
+        </ul>
+      </div>
+      <div class="diff-col us">
+        <h3>The Aevum way</h3>
+        <ul>
+          <li>Real quotes from real carrier rate tables</li>
+          <li>Your information stays with your advisor. Period.</li>
+          <li>Declined elsewhere? That's our specialty, not a dead end</li>
+          <li>Annual reviews and a written claim-time promise</li>
+          <li>Independent — we shop the market and show our work</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps" id="how">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Three steps. Often one day.</h2>
+    <p class="lead">You're nine questions away from knowing exactly what it costs to protect your family.</p>
+    <div class="steps-grid">
+      <div class="step">
+        <h3>Answer a few questions</h3>
+        <p>Two minutes online — age, health basics, how much coverage. No SSN, no medical records to dig up, and nothing shared with marketers.</p>
+      </div>
+      <div class="step">
+        <h3>We shop the market</h3>
+        <p>Your advisor matches you across A-rated carriers — including no-exam options most applicants qualify for — and shows you the real trade-offs side by side.</p>
+      </div>
+      <div class="step">
+        <h3>Get your decision</h3>
+        <p>E-sign from your couch. Many applicants get a carrier decision the same day. Complex health history? We advocate for you through full underwriting instead of auto-declining you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE / OFFER STACK -->
+<section id="promise">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Our promises are about us — because the only thing an honest agency can guarantee is how it behaves.</h2>
+    <div class="offer-cards">
+      <div class="card">
+        <span class="tag">Before you buy</span>
+        <h3>The Family Legacy Audit — free, keep it either way</h3>
+        <p>A needs analysis, a beneficiary audit of anything you already own, an employer-coverage gap check, and a one-page Family Protection Scorecard. Yours whether or not you buy anything, ever.</p>
+      </div>
+      <div class="card">
+        <span class="tag">While you decide</span>
+        <h3>The 48-hour promise</h3>
+        <p>If we can't get you a carrier decision within 48 hours of a completed application, we re-run the entire market search free — and hand you the full comparison either way.</p>
+      </div>
+      <div class="card">
+        <span class="tag">After the sale</span>
+        <h3>The claim-time promise</h3>
+        <p>A written commitment: if your family ever files a claim, a person from this office — someone whose name you know — walks them through every step until it's resolved.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS OWNERS -->
+<section class="biz" id="business">
+  <div class="wrap split">
+    <div>
+      <div class="rule"></div>
+      <p class="eyebrow">For business owners</p>
+      <h2>Built by a business owner. For the people whose companies depend on them.</h2>
+      <p class="lead" style="margin-bottom:18px">Aevum's founder runs a contracting company — so we speak owner, not just policy. Buy-sell funding, key-person coverage, collateral life for your bank or bond line, and exit planning.</p>
+      <p style="max-width:60ch;margin-bottom:18px"><strong>One question worth asking this year:</strong> has your buy-sell agreement been reviewed since the Supreme Court's <em>Connelly</em> decision? For many closely held businesses, the old structure now creates an avoidable estate-tax problem. We review it with your CPA or attorney — free.</p>
+      <a class="btn btn--ghost" href="#quote">Book a buy-sell review</a>
+    </div>
+    <div class="biz-img">
+      <!-- DRAFT: hotlinked from Higgsfield CDN. Before launch: download, optimize, self-host in /assets. -->
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_342M7OMJEmtQi5ZXBKPVqJZUjCn/hf_20260722_024356_97f187e8-d8e4-4208-ab12-d7dd711ddd31_min.webp" alt="A business owner with a coffee standing in his warehouse doorway at dawn, looking out over his work trucks" width="2016" height="1344">
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE EMBED (placeholder) -->
+<section id="quote">
+  <div class="wrap" style="text-align:center;max-width:760px">
+    <div class="rule" style="margin:0 auto 22px"></div>
+    <h2>See your real rate</h2>
+    <p class="lead" style="margin:0 auto 30px">Two minutes. No exam for most applicants. Your quote comes from carrier rate tables — not a marketing teaser.</p>
+    <!-- PRODUCTION: replace this block with the BackNine Quote & Apply embed or Ethos agent link.
+         Compliance: this page must remain free of ad pixels / session-replay once health questions are collected.
+         Any page that names a specific carrier, product, or rate requires that carrier's ad approval first. -->
+    <div style="border:2px dashed var(--line);border-radius:6px;padding:56px 24px;background:#fff">
+      <p class="serif" style="font-size:22px;margin-bottom:10px">Quote engine embed goes here</p>
+      <p style="font-size:15px;color:#6B6F7D">BackNine Quote &amp; Apply widget / Ethos for Agents link — wired at launch, after licensing.</p>
+    </div>
+    <p style="font-size:13px;color:#6B6F7D;margin-top:16px;line-height:1.7">By requesting a quote you agree to be contacted by a licensed Aevum advisor about your request. We will never sell your information. Consent to marketing calls/texts is optional and never a condition of purchase — see the form's consent language and our <a href="#privacy">Privacy Policy</a>.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--oat)">
+  <div class="wrap" style="max-width:820px">
+    <div class="rule"></div>
+    <h2>Fair questions, straight answers</h2>
+    <div style="margin-top:28px">
+      <details>
+        <summary>What does term life actually cost?</summary>
+        <p>It depends on your age, health, coverage amount, and term length — for many healthy adults in their 30s it's comparable to a couple of streaming subscriptions a month. The honest answer is a real quote, which takes about two minutes and costs nothing. One thing that's always true: rates are locked to the age you apply, so waiting has a price.</p>
+      </details>
+      <details>
+        <summary>Do I need a medical exam?</summary>
+        <p>Most healthy applicants qualify for no-exam (accelerated) underwriting and can get a decision quickly — sometimes the same day. Some situations still call for full underwriting; when that happens it usually means we're chasing you a better rate class, and we'll tell you why it's worth it.</p>
+      </details>
+      <details>
+        <summary>I was declined by an online life insurance site. Is it over?</summary>
+        <p>No — and this is genuinely our favorite kind of case. Instant-decision algorithms decline anything they can't neatly score. A human advisor with access to many carriers, including ones that specialize in specific health histories, can very often find coverage the algorithm couldn't.</p>
+      </details>
+      <details>
+        <summary>I have coverage through work. Isn't that enough?</summary>
+        <p>Employer coverage is a good start, but it's usually 1–2× salary and it typically ends when the job does. Most families that depend on an income need more, owned personally, that follows you between jobs. The free Legacy Audit will show you your exact gap — you may find work coverage is enough, and we'll tell you if so.</p>
+      </details>
+      <details>
+        <summary>How does Aevum get paid?</summary>
+        <p>Like every insurance agency, we're paid a commission by the carrier when a policy is placed — it's built into the premium and doesn't change your price versus buying direct. What's different here is that we're independent: our incentive is to place you with the right carrier, not the only carrier we represent.</p>
+      </details>
+      <details>
+        <summary>Is Aevum an insurance company?</summary>
+        <p>No — we're an independent licensed insurance agency. Your policy is issued by a third-party insurance carrier, and all guarantees are backed solely by the issuing carrier. Our job is to shop the market for you, advocate through underwriting, and stay your advisor after the sale.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>What would your family's life look like without your income?</h2>
+    <p>Fix that in one 15-minute call. Free quote, free Legacy Audit, no obligation — and your premium locks to the age you are today.</p>
+    <a class="btn" href="#quote">See my rate</a>
+  </div>
+</section>
+</main>
+
+<footer id="privacy">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="/">aevum<span>.</span></a>
+        <p style="margin-top:12px;max-width:38ch">Aevum (Latin): a lifetime; eternity. An independent life insurance agency for people who want a real advisor and a straight answer.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#business">Business owners</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Accessibility Statement</a></li>
+          <li><a href="#">Licensing &amp; Disclosures</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p><strong>[DRAFT — populate before launch]</strong> Aevum Insurance Group LLC is an independent insurance agency, not an insurer. Insurance products are offered through licensed third-party insurance carriers; all guarantees are subject to the claims-paying ability of the issuing carrier. Florida agency license #[L-number] · NPN [number] · Agency licensed in Florida (resident), Maryland, Virginia, and Pennsylvania (non-resident). Insurance products are offered only to residents of FL, MD, VA, and PA; not all products are available in all states. Rates and eligibility are determined by the issuing carrier through underwriting and are not guaranteed until a policy is issued. We are compensated by commission from insurance carriers. This website is not a solicitation in any state where we are not licensed. © 2026 Aevum Insurance Group LLC.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
