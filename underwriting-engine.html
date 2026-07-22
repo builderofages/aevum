@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PERENNE · Instant Eligibility Engine</title>
+<style>
+:root{--bg:#060709;--pnl:#0c0e13;--pnl2:#11141b;--ink:#F3EFE7;--mut:#9AA0AC;--mut2:#5B6480;--red:#C02A32;--red2:#E0454E;--amber:#C99A5B;--grn:#3FA46A;--line:rgba(243,239,231,.09)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:840px;margin:0 auto;padding:clamp(24px,5vw,60px) clamp(18px,4vw,34px) 100px}
+h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(28px,5vw,46px);letter-spacing:-.02em;line-height:1.05}
+.tag{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.sub{color:var(--mut);max-width:56ch;margin:14px 0 8px;font-size:15.5px}
+.bar{height:1px;background:var(--line);margin:26px 0}
+.step{background:var(--pnl);border:1px solid var(--line);border-radius:16px;padding:22px 22px 24px;margin:16px 0}
+.step h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.step h2 .n{display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;align-items:center;justify-content:center;font-weight:700}
+label{display:block;font-size:13px;color:var(--mut);margin:0 0 6px}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row>div{flex:1;min-width:150px}
+input,select{width:100%;background:var(--pnl2);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:12px 13px;font-size:15px;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--red2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chip{position:relative;font-size:13px;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:var(--pnl2);color:var(--mut);cursor:pointer;user-select:none;transition:.15s}
+.chip:hover{border-color:var(--mut2);color:var(--ink)}
+.chip.on{background:rgba(192,42,50,.16);border-color:var(--red2);color:#fff}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.hint{font-size:12px;color:var(--mut2);margin-top:8px}
+.grp-lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2);margin:16px 0 8px}
+button.go{width:100%;margin-top:26px;background:var(--red);color:#fff;border:none;border-radius:12px;padding:17px;font-size:16px;font-weight:600;letter-spacing:.01em;cursor:pointer;transition:.15s}
+button.go:hover{background:var(--red2)}
+/* RESULT */
+#out{display:none;margin-top:30px}
+.verdict{border-radius:18px;padding:26px;border:1px solid var(--line);position:relative;overflow:hidden}
+.verdict.approve{background:linear-gradient(135deg,rgba(63,164,106,.14),rgba(63,164,106,.03));border-color:rgba(63,164,106,.4)}
+.verdict.refer{background:linear-gradient(135deg,rgba(201,154,91,.14),rgba(201,154,91,.03));border-color:rgba(201,154,91,.4)}
+.verdict.gi{background:linear-gradient(135deg,rgba(192,42,50,.14),rgba(192,42,50,.03));border-color:rgba(192,42,50,.4)}
+.vk{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--mut)}
+.vh{font-family:Georgia,serif;font-size:clamp(24px,4vw,34px);margin:6px 0 4px;letter-spacing:-.01em}
+.vh .em{color:var(--amber)}
+.vmsg{color:var(--mut);font-size:15px;max-width:60ch}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0}
+.card{background:var(--pnl);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut2);margin-bottom:7px}
+.card .v{font-family:Georgia,serif;font-size:26px;letter-spacing:-.01em}
+.card .v small{font-size:14px;color:var(--mut);font-family:Inter}
+.card .d{font-size:12.5px;color:var(--mut);margin-top:5px}
+.detail{background:var(--pnl);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-top:14px}
+.detail h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:12px}
+.li{display:flex;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:14px}
+.li:first-of-type{border-top:none}
+.li .ic{flex:0 0 18px;color:var(--amber)}
+.pill{display:inline-block;font-size:11px;padding:3px 9px;border-radius:999px;margin:2px 4px 2px 0;background:var(--pnl2);border:1px solid var(--line);color:var(--mut)}
+.pill.warn{color:var(--red2);border-color:rgba(224,69,78,.4)}
+.pill.ok{color:var(--grn);border-color:rgba(63,164,106,.4)}
+.disc{font-size:11.5px;color:var(--mut2);margin-top:20px;line-height:1.5}
+.reset{display:inline-block;margin-top:16px;color:var(--mut);font-size:13px;text-decoration:underline;cursor:pointer;background:none;border:none}
+a{color:var(--red2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="tag">PERENNE · Instant Eligibility Engine</div>
+  <h1>See what you qualify for — <span style="font-style:italic">before</span> anyone calls you.</h1>
+  <p class="sub">Answer honestly. This runs the same first-pass logic a carrier's accelerated-underwriting engine uses — build, tobacco, health knockouts, and condition dispositions across FL, MD, VA &amp; PA — and returns a real routing decision, the product that fits, an estimated monthly range, and the coverage amount your family actually needs. No contact info required to see your result.</p>
+  <div class="bar"></div>
+
+  <form id="f">
+    <div class="step">
+      <h2><span class="n">1</span> About you</h2>
+      <div class="row">
+        <div><label>Age</label><input id="age" type="number" min="18" max="89" placeholder="e.g. 42"></div>
+        <div><label>Sex (for rate class)</label><select id="sex"><option value="M">Male</option><option value="F">Female</option></select></div>
+        <div><label>State</label><select id="state"><option value="FL">Florida</option><option value="MD">Maryland</option><option value="VA">Virginia</option><option value="PA">Pennsylvania</option></select></div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <div><label>Height</label><div style="display:flex;gap:8px"><select id="ft"></select><select id="in"></select></div></div>
+        <div><label>Weight (lbs)</label><input id="wt" type="number" min="70" max="500" placeholder="e.g. 190"></div>
+        <div><label>Nicotine / tobacco</label><select id="tob"><option value="never">Never / 5+ yrs ago</option><option value="quit">Quit 1–5 yrs ago</option><option value="recent">Used in last 12 mo</option><option value="cigar">Occasional cigars only</option><option value="mj">Marijuana only</option></select></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <h2><span class="n">2</span> Health — check anything that is true</h2>
+      <div class="grp-lbl">Serious / current status (be honest — this routes you, it never loses you)</div>
+      <div class="chips" id="ko"></div>
+      <div class="grp-lbl">Managed / common conditions</div>
+      <div class="chips" id="cond"></div>
+      <p class="hint">Leave everything unchecked if none apply. Checking a serious item routes you to a guaranteed-acceptance product instead of declining you.</p>
+    </div>
+
+    <div class="step">
+      <h2><span class="n">3</span> What you're protecting (for your coverage amount)</h2>
+      <div class="row">
+        <div><label>Annual income</label><input id="inc" type="number" placeholder="e.g. 70000"></div>
+        <div><label>Mortgage balance</label><input id="mort" type="number" placeholder="e.g. 250000"></div>
+        <div><label>Other debt</label><input id="debt" type="number" placeholder="e.g. 30000"></div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <div><label>Children to support</label><input id="kids" type="number" min="0" max="12" placeholder="e.g. 2"></div>
+        <div><label>Years of income to replace</label><input id="yrs" type="number" placeholder="default 10"></div>
+        <div><label>Coverage you already have</label><input id="have" type="number" placeholder="e.g. 0"></div>
+      </div>
+      <p class="hint">Main goal? &nbsp;
+        <select id="goal" style="width:auto;display:inline-block;margin-top:6px">
+          <option value="income">Replace my income / protect my family</option>
+          <option value="mortgage">Pay off the mortgage</option>
+          <option value="final">Cover my funeral / final expenses</option>
+          <option value="legacy">Leave a permanent legacy / cash value</option>
+        </select>
+      </p>
+    </div>
+
+    <button class="go" type="submit">Run my instant decision →</button>
+  </form>
+
+  <div id="out"></div>
+  <p class="disc" id="disc"></p>
+</div>
+
+<script>
+/* ---------- KNOWLEDGE BASE (sourced 2025–26; representative) ---------- */
+const KO = [ // knockouts -> guaranteed issue
+ "Currently in hospital, nursing home, hospice or bedridden","Diagnosed terminal / life expectancy under 24 months",
+ "HIV / AIDS","On oxygen for a lung condition (COPD)","Kidney dialysis / end-stage kidney failure",
+ "Congestive heart failure (CHF)","Alzheimer's / dementia","Organ transplant or on transplant list",
+ "Metastatic or currently-treated cancer","Heart attack, stent or bypass in last 12 months",
+ "Stroke / TIA in last 12 months","Insulin-dependent diabetes with complications (neuropathy/amputation)",
+ "Liver cirrhosis / hepatitis C","Drug or alcohol treatment in last 24 months","ALS, MS with disability, or Parkinson's (advanced)"];
+const COND = [ // {name, key, term:disp, si:disp}  disp: preferred|standard|rated|postpone
+ {n:"Type 2 diabetes — controlled, no insulin",t:"standard",s:"approve"},
+ {n:"Type 2 diabetes — on insulin",t:"rated",s:"approve"},
+ {n:"High blood pressure — controlled",t:"preferred",s:"approve"},
+ {n:"High cholesterol — controlled",t:"preferred",s:"approve"},
+ {n:"Sleep apnea — CPAP compliant",t:"standard",s:"approve"},
+ {n:"Asthma — mild/moderate",t:"standard",s:"approve"},
+ {n:"COPD / emphysema — no oxygen",t:"rated",s:"rated"},
+ {n:"Anxiety or depression — treated & stable",t:"standard",s:"approve"},
+ {n:"Cancer — treated, 5+ yrs remission",t:"standard",s:"approve"},
+ {n:"Cancer — treated 2–5 yrs ago",t:"rated",s:"approve"},
+ {n:"Heart disease / stent — 1+ yr, stable",t:"rated",s:"approve"},
+ {n:"Atrial fibrillation — controlled",t:"rated",s:"approve"},
+ {n:"Overweight (see build)",t:"standard",s:"approve"},
+ {n:"DUI — over 3 yrs ago",t:"standard",s:"approve"},
+ {n:"DUI — within last 24 months",t:"rated",s:"rated"}];
+const FREELOOK={FL:14,MD:10,VA:10,PA:10};
+/* Build chart — max weight (lbs) per height for Standard (~BMI33) and SI/FE accept (~BMI43) */
+function bmi(wt,hin){return 703*wt/(hin*hin);}
+/* Representative monthly rate per $1,000 of face, non-tobacco, standard class */
+function rate(product,age){
+ const a=Math.max(25,Math.min(85,age));
+ const T=[[30,.040],[40,.062],[50,.14],[60,.36],[70,.85]]; // 20yr term /$1k/mo
+ const W=[[30,1.2],[40,1.9],[50,3.0],[60,5.0],[70,8.0],[80,12]]; // whole
+ const F=[[50,2.6],[60,3.6],[65,4.6],[70,6.2],[75,8.4],[80,11.5]]; // final expense
+ const pick=(tab)=>{for(let i=0;i<tab.length-1;i++){if(a<=tab[i+1][0]){const[a0,r0]=tab[i],[a1,r1]=tab[i+1];return r0+(r1-r0)*(a-a0)/(a1-a0);}}return tab[tab.length-1][1];};
+ if(product==='term'||product==='mortgage'||product==='noexam')return pick(T);
+ if(product==='whole'||product==='iul')return pick(W);
+ if(product==='final')return pick(F);
+ if(product==='gi')return pick(F)*1.6;
+ return pick(T);
+}
+const classMult={preferred:.82,standard:1,rated:1.9};
+const tobMult=(p)=> (p==='final'||p==='gi')?1.35:2.15;
+
+/* ---------- BUILD UI ---------- */
+const ftSel=document.getElementById('ft'),inSel=document.getElementById('in');
+for(let f=4;f<=7;f++)ftSel.append(new Option(f+" ft",f));
+for(let i=0;i<12;i++)inSel.append(new Option(i+" in",i));
+ftSel.value=5;inSel.value=9;
+function chips(host,arr){document.getElementById(host).innerHTML=arr.map((c,i)=>{const n=typeof c==='string'?c:c.n;return `<label class="chip"><input type="checkbox" data-h="${host}" data-i="${i}">${n}</label>`;}).join('');}
+chips('ko',KO);chips('cond',COND.map(c=>c.n));
+document.querySelectorAll('.chip input').forEach(cb=>cb.addEventListener('change',e=>e.target.closest('.chip').classList.toggle('on',e.target.checked)));
+
+/* ---------- ENGINE ---------- */
+document.getElementById('f').addEventListener('submit',e=>{
+ e.preventDefault();
+ const age=+document.getElementById('age').value||40, sex=document.getElementById('sex').value,
+  state=document.getElementById('state').value,
+  hin=(+ftSel.value)*12+(+inSel.value), wt=+document.getElementById('wt').value||180,
+  tob=document.getElementById('tob').value, goal=document.getElementById('goal').value,
+  inc=+document.getElementById('inc').value||0, mort=+document.getElementById('mort').value||0,
+  debt=+document.getElementById('debt').value||0, kids=+document.getElementById('kids').value||0,
+  yrs=+document.getElementById('yrs').value||10, have=+document.getElementById('have').value||0;
+ const koHit=[...document.querySelectorAll('.chip input[data-h="ko"]:checked')].map(x=>KO[+x.dataset.i]);
+ const condHit=[...document.querySelectorAll('.chip input[data-h="cond"]:checked')].map(x=>COND[+x.dataset.i]);
+ const b=bmi(wt,hin);
+ const tobacco = tob==='recent'||tob==='quit'; // quit<5y still smoker class at many carriers; cigar/mj/never = non-tob here
+ const smokerClass = tob==='recent';
+
+ /* --- coverage need: DIME vs 10-12x, take higher, net of existing --- */
+ const dime = debt + 15000 + (inc*Math.max(1,yrs)) + mort + kids*100000;
+ const mult = inc*(age<40?12:age<55?10:8);
+ let need = Math.max(dime,mult) - have; need=Math.max(need,0);
+ const needRound = need>0?Math.round(need/5000)*5000:0;
+
+ /* --- decision routing --- */
+ let verdict, product, prodLabel, cls='standard', reasons=[], notes=[];
+ const buildDeclineBMI = b>=43, buildTableBMI = b>=33 && b<43;
+
+ if(koHit.length){
+   verdict='gi'; product='gi'; prodLabel='Guaranteed Issue Whole Life';
+   reasons.push("A serious-health answer means medically-underwritten plans would decline — so we route you to guaranteed acceptance, where you cannot be turned down.");
+   notes.push("2–3 year graded benefit (premiums + interest refunded if natural death occurs in that window; accidents covered from day one).");
+   notes.push("No exam, no health questions. Up to ~$25,000 coverage.");
+ } else if(goal==='final' || age>=70){
+   // final expense track
+   const worst=condHit.reduce((w,c)=>({preferred:0,standard:1,approve:1,rated:2}[c.s]>({preferred:0,standard:1,approve:1,rated:2}[w])?c.s:w),'approve');
+   if(buildDeclineBMI){verdict='gi';product='gi';prodLabel='Guaranteed Issue Whole Life';reasons.push("Build is above simplified-issue limits, so we route to guaranteed acceptance.");}
+   else{verdict='approve';product='final';prodLabel='Final Expense (Simplified Issue) Whole Life';
+     reasons.push("Simplified issue — health questions only, no medical exam. Level (day-one) death benefit.");
+     if(worst==='rated'){cls='rated';notes.push("One condition may move you to a graded plan at some carriers; we shop the most lenient one.");}}
+ } else {
+   // living-benefit track: term / whole / mortgage / iul
+   product = goal==='mortgage'?'mortgage':goal==='legacy'?'whole':'term';
+   prodLabel = product==='mortgage'?'Mortgage Protection (Level Term)':product==='whole'?'Whole Life':'Term Life';
+   // class from build + conditions
+   let dispScore=0; // 0 pref,1 std,2 rated,3 postpone
+   const map={preferred:0,standard:1,rated:2,postpone:3};
+   condHit.forEach(c=>{dispScore=Math.max(dispScore, map[c.t]);});
+   if(buildTableBMI)dispScore=Math.max(dispScore,2);
+   if(buildDeclineBMI){verdict='gi';product='gi';prodLabel='Guaranteed Issue Whole Life';reasons.push("Build is above fully-underwritten limits — routing to guaranteed acceptance.");}
+   else if(dispScore>=2){verdict='refer';cls='rated';reasons.push("A rated condition or build means a carrier will likely offer coverage at a table rating — a human underwriter reviews for the best class. Still very much insurable.");}
+   else{verdict='approve';cls=dispScore===0&&b<28&&!smokerClass?'preferred':'standard';
+     if(age<=60 && needRound<=1000000){reasons.push("Clean profile for accelerated underwriting — most carriers can issue with no medical exam, often same-day.");product = (product==='term')?'noexam':product;prodLabel=(product==='noexam')?'No-Exam Term Life':prodLabel;}
+     else reasons.push("Strong profile; a brief exam or accelerated path applies at this coverage level.");}
+ }
+ if(smokerClass)notes.push("Priced at tobacco/smoker rates (nicotine use within 12 months). Non-tobacco rates unlock 12 months after your last use.");
+ if(tob==='cigar')notes.push("Occasional cigars can still qualify for non-tobacco rates at select carriers with a negative cotinine test.");
+ if(tob==='mj')notes.push("Marijuana-only use is treated as non-tobacco by many of our carriers.");
+
+ /* --- premium estimate --- */
+ const face = product==='gi'?Math.min(needRound||10000,25000): product==='final'?Math.min(needRound||15000,40000): (needRound||500000);
+ let base = rate(product,age)*(face/1000)*classMult[cls==='preferred'?'preferred':cls==='rated'?'rated':'standard'];
+ if(tobacco)base*=tobMult(product);
+ if(sex==='F')base*=0.88;
+ const lo=Math.max(9,Math.round(base*0.82)), hi=Math.round(base*1.25);
+ const faceFmt = '$'+face.toLocaleString();
+ const finalTrack = (product==='final'||product==='gi');
+ const showNeed = finalTrack ? face : needRound; // final-expense track shows burial-sized need, not income replacement
+
+ /* --- render --- */
+ const vLabel = verdict==='approve'?'Likely Approved':verdict==='refer'?'Insurable — Referred for Best Rate':'Guaranteed Acceptance';
+ const vClass = verdict;
+ const iconOk='✓',iconWarn='◆';
+ let html = `<div class="verdict ${vClass}">
+   <div class="vk">Instant decision</div>
+   <div class="vh">${verdict==='approve'?'You\'re <span class="em">likely approved</span>.':verdict==='refer'?'You\'re <span class="em">insurable</span> — one quick review.':'You <span class="em">cannot be turned down</span>.'}</div>
+   <div class="vmsg">${reasons[0]}</div>
+ </div>
+ <div class="cards">
+   <div class="card"><div class="k">Recommended plan</div><div class="v" style="font-size:19px;line-height:1.25">${prodLabel}</div></div>
+   <div class="card"><div class="k">Coverage you need</div><div class="v">${showNeed?('$'+showNeed.toLocaleString()):'—'}</div><div class="d">${finalTrack?'Final-expense / burial coverage':'DIME + income-multiple method'}</div></div>
+   <div class="card"><div class="k">Est. monthly ${product==='iul'?'(illustrated)':''}</div><div class="v">$${lo}<small>–$${hi}/mo</small></div><div class="d">for ${faceFmt} · ${cls} class · ${tobacco?'tobacco':'non-tobacco'}</div></div>
+ </div>`;
+
+ // detail: rate class + build + why
+ html+=`<div class="detail"><h3>Your underwriting snapshot</h3>
+   <div style="margin-bottom:10px">
+     <span class="pill ${cls==='rated'?'warn':'ok'}">${cls.toUpperCase()} class</span>
+     <span class="pill ${b>=33?'warn':'ok'}">BMI ${b.toFixed(1)}</span>
+     <span class="pill ${smokerClass?'warn':'ok'}">${smokerClass?'Tobacco':'Non-tobacco'}</span>
+     <span class="pill">${state} free-look: ${FREELOOK[state]} days</span>
+     ${koHit.length?'<span class="pill warn">'+koHit.length+' knockout answer(s)</span>':''}
+   </div>`;
+ [...reasons.slice(1),...notes].forEach(n=>{html+=`<div class="li"><span class="ic">${verdict==='gi'?iconWarn:iconOk}</span><span>${n}</span></div>`;});
+ // coverage math transparency
+ if(finalTrack){html+=`<div class="li"><span class="ic">→</span><span>Final-expense coverage sizes to funeral, burial and final medical costs — typically $10,000–$25,000. Recommended: ${faceFmt}${product==='gi'?' (guaranteed-issue cap $25,000)':''}.</span></div>`;}
+ else{html+=`<div class="li"><span class="ic">→</span><span>Coverage math: debt $${(debt+15000).toLocaleString()} + income $${(inc*Math.max(1,yrs)).toLocaleString()} (${Math.max(1,yrs)} yrs) + mortgage $${mort.toLocaleString()} + education $${(kids*100000).toLocaleString()} ${have?`− existing $${have.toLocaleString()} `:''}= about $${needRound.toLocaleString()}.</span></div>`;}
+ html+=`</div>`;
+
+ // conditions considered
+ if(condHit.length||koHit.length){
+   html+=`<div class="detail"><h3>What we accounted for</h3><div>`;
+   condHit.forEach(c=>html+=`<span class="pill">${c.n}</span>`);
+   koHit.forEach(c=>html+=`<span class="pill warn">${c}</span>`);
+   html+=`</div></div>`;
+ }
+
+ // next step
+ html+=`<div class="detail"><h3>Your next step</h3>
+   <div class="li"><span class="ic">1</span><span>A licensed PERENNE advisor confirms this with the live carrier that fits you best — we shop 40+ so you don't overpay.</span></div>
+   <div class="li"><span class="ic">2</span><span>${verdict==='gi'?'Guaranteed-acceptance application — no exam, no health questions.':verdict==='approve'&&(product==='noexam'||product==='final')?'No-exam application — often a same-day decision.':'A brief review (and possibly a quick exam) locks your rate.'}</span></div>
+   <div class="li"><span class="ic">3</span><span>You have a ${FREELOOK[state]}-day free look in ${({FL:'Florida',MD:'Maryland',VA:'Virginia',PA:'Pennsylvania'})[state]} — full refund if you change your mind. No risk to start.</span></div>
+   <button class="go" style="margin-top:18px" onclick="document.getElementById('lead').scrollIntoView({behavior:'smooth'})">Lock in this rate →</button>
+ </div>
+ <div id="lead" class="detail"><h3>Send my result to an advisor</h3>
+   <div class="row"><div><label>First name</label><input placeholder="First name"></div><div><label>Phone</label><input placeholder="(000) 000-0000"></div></div>
+   <p class="hint">Demo form — wire to your CRM (GoHighLevel) + TrustedForm consent capture before launch. By submitting, the lead consents to contact (TCPA/FTSA-compliant checkbox goes here).</p>
+ </div>`;
+
+ const out=document.getElementById('out'); out.innerHTML=html; out.style.display='block';
+ document.getElementById('disc').textContent="Estimate only — not an offer of insurance. Eligibility, rate class, and price are determined by the issuing carrier through underwriting and are not final until a policy is issued. Figures are representative 2025–26 ranges for the four states shown and will vary by carrier, exact health, and product. PERENNE is an independent agency, not an insurer; products offered only where licensed (FL, MD, VA, PA).";
+ out.scrollIntoView({behavior:'smooth',block:'start'});
+});
+</script>
+</body>
+</html>
